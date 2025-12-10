@@ -1,0 +1,3795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHITE COAT WARRIORS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- KaTeX for equation rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+            ]
+        });"></script>
+    <style>
+        :root {
+            --primary-blue: #1a56db;
+            --secondary-blue: #0ea5e9;
+            --dark-blue: #1e3a8a;
+            --light-blue: #dbeafe;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --accent-red: #ef4444;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --accent-teal: #14b8a6;
+            --accent-yellow: #fbbf24;
+            --accent-amber: #f59e0b;
+            --vibrant-blue: #3b82f6;
+            --vibrant-green: #22c55e;
+            --vibrant-purple: #a855f7;
+            --vibrant-pink: #e879f9;
+            --gradient-blue: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            --gradient-green: linear-gradient(135deg, var(--accent-green), #34d399);
+            --gradient-orange: linear-gradient(135deg, var(--accent-orange), #f97316);
+            --gradient-red: linear-gradient(135deg, var(--accent-red), #f87171);
+            --gradient-purple: linear-gradient(135deg, var(--accent-purple), #a78bfa);
+            --gradient-pink: linear-gradient(135deg, var(--accent-pink), #f472b6);
+            --gradient-teal: linear-gradient(135deg, var(--accent-teal), #2dd4bf);
+            --gradient-yellow: linear-gradient(135deg, var(--accent-yellow), #f59e0b);
+            --gradient-vibrant: linear-gradient(135deg, #4f46e5, #000000, #ec4899);
+            --reasoning-disabled: linear-gradient(135deg, #4f46e5, #5e54ff);
+            --reasoning-enabled: linear-gradient(135deg, #ef4444, #ff5151);
+            --shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 2px 5px rgba(0, 0, 0, 0.08);
+            --shadow-xl: 0 5px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 6px;
+            color: #1e3a8a;
+            font-size: 8.25px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 9px;
+        }
+
+        .logo h1 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--dark-blue);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08);
+            margin-bottom: 1.5px;
+            background: var(--gradient-vibrant);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo p {
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 0.525rem;
+        }
+
+        .page {
+            background: white;
+            border-radius: 9px;
+            padding: 9px;
+            box-shadow: var(--shadow-xl);
+            width: 100%;
+            display: none;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+            backdrop-filter: blur(10px);
+        }
+
+        .active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .promo-banner {
+            background: var(--gradient-vibrant);
+            color: white;
+            padding: 11.25px;
+            border-radius: 7.5px;
+            margin-bottom: 11.25px;
+            text-align: center;
+            font-size: 0.45rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promo-banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            z-index: 1;
+        }
+
+        .promo-banner h2 {
+            font-size: 0.675rem;
+            margin-bottom: 6px;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .promo-banner p {
+            line-height: 1.4;
+            text-align: justify;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-group {
+            margin-bottom: 6px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 1.5px;
+            font-weight: 600;
+            color: var(--dark-blue);
+            font-size: 0.525rem;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 4.5px 6.75px;
+            border: 1.5px solid var(--light-blue);
+            border-radius: 3.75px;
+            font-size: 0.525rem;
+            background: #f8fafc;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(26, 86, 219, 0.15);
+        }
+
+        .input-container {
+            position: relative;
+        }
+
+        .password-container .form-input {
+            padding-right: 22.5px;
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 7.5px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-blue);
+            font-size: 0.525rem;
+            cursor: pointer;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4.5px 7.5px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.525rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            gap: 3px;
+            width: 100%;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(26, 86, 219, 0.2);
+        }
+
+        .btn-contact {
+            background: var(--gradient-green);
+            color: white;
+        }
+
+        .btn-contact:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(37, 211, 102, 0.2);
+        }
+
+        .btn-purple {
+            background: var(--gradient-purple);
+            color: white;
+        }
+
+        .btn-purple:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+        }
+
+        .btn-red {
+            background: var(--gradient-red);
+            color: white;
+        }
+
+        .btn-red:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+        }
+
+        .btn-orange {
+            background: var(--gradient-orange);
+            color: white;
+        }
+
+        .btn-orange:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(245, 158, 11, 0.2);
+        }
+
+        .error-box {
+            background: #fee2e2;
+            color: var(--accent-red);
+            padding: 3.75px 5.25px;
+            border-radius: 2.25px;
+            margin-top: 4.5px;
+            display: none;
+            font-weight: 600;
+            font-size: 0.525rem;
+            border-left: 2.25px solid var(--accent-red);
+        }
+
+        .success-box {
+            background: #d1fae5;
+            color: var(--accent-green);
+            padding: 3.75px 5.25px;
+            border-radius: 2.25px;
+            margin-top: 4.5px;
+            display: none;
+            font-weight: 600;
+            font-size: 0.525rem;
+            border-left: 2.25px solid var(--accent-green);
+        }
+
+        .notification-box {
+            background: #fef3c7;
+            color: #d97706;
+            padding: 7.5px;
+            border-radius: 4.5px;
+            margin-top: 7.5px;
+            font-weight: 600;
+            font-size: 0.525rem;
+            text-align: center;
+            border-left: 3px solid #f59e0b;
+        }
+
+        .quiz-notification {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: white;
+            padding: 11.25px;
+            border-radius: 7.5px;
+            box-shadow: var(--shadow-xl);
+            z-index: 1000;
+            display: none;
+            max-width: 225px;
+            border-left: 3.75px solid var(--accent-green);
+            animation: slideInRight 0.3s ease;
+            transform: translateX(100%);
+        }
+
+        .quiz-notification.show {
+            display: block;
+            transform: translateX(0);
+        }
+
+        .quiz-notification.warning {
+            border-left-color: var(--accent-orange);
+        }
+
+        .quiz-notification.error {
+            border-left-color: var(--accent-red);
+        }
+
+        .quiz-notification-content {
+            display: flex;
+            flex-direction: column;
+            gap: 7.5px;
+        }
+
+        .quiz-notification-title {
+            font-weight: 700;
+            font-size: 0.6rem;
+            color: var(--dark-blue);
+        }
+
+        .quiz-notification-message {
+            font-size: 0.525rem;
+            color: #4b5563;
+        }
+
+        .quiz-notification-actions {
+            display: flex;
+            gap: 6px;
+            justify-content: flex-end;
+        }
+
+        .quiz-notification-btn {
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 0.4875rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-notification-btn.primary {
+            background: var(--gradient-blue);
+            color: white;
+        }
+
+        .quiz-notification-btn.secondary {
+            background: #f3f4f6;
+            color: #4b5563;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        .main-page-buttons {
+            display: grid;
+            gap: 6px;
+            margin-top: 9px;
+        }
+
+        .quiz-access-section {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 9px;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+            padding-bottom: 4.5px;
+            border-bottom: 1.5px solid var(--light-blue);
+        }
+
+        .quiz-title-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2.25px;
+            width: 80%;
+        }
+
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 0.525rem;
+            color: var(--dark-blue);
+            font-weight: 600;
+        }
+
+        .timer-container {
+            display: flex;
+            gap: 4.5px;
+            justify-content: flex-end;
+            width: 100%;
+        }
+
+        .timer, .question-timer {
+            background: var(--gradient-blue);
+            color: white;
+            padding: 2.25px 4.5px;
+            border-radius: 7.5px;
+            font-weight: 700;
+            font-size: 0.525rem;
+            box-shadow: var(--shadow);
+            white-space: nowrap;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .timer.total-timer {
+            background: var(--gradient-orange);
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 4.5px;
+            background: #e5e7eb;
+            border-radius: 2.25px;
+            overflow: hidden;
+            margin-bottom: 6px;
+            box-shadow: var(--shadow);
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 2.25px;
+            transition: width 0.4s ease;
+            background: var(--gradient-vibrant);
+        }
+
+        .question-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(10.5px, 1fr));
+            gap: 2.25px;
+            margin-bottom: 6px;
+        }
+
+        .question-nav-item {
+            width: 10.5px;
+            height: 10.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 2.25px;
+            font-weight: 700;
+            font-size: 0.375rem;
+            cursor: pointer;
+            background: white;
+            border: 1.5px solid var(--light-blue);
+            transition: all 0.2s;
+        }
+
+        .question-nav-item.current {
+            background: var(--gradient-vibrant);
+            color: white;
+            border-color: var(--primary-blue);
+            transform: scale(1.1);
+        }
+
+        .question-nav-item.solved {
+            background: var(--gradient-green);
+            color: white;
+            border-color: var(--accent-green);
+        }
+
+        .question-nav-item.visited {
+            background: var(--gradient-orange);
+            color: white;
+            border-color: var(--accent-orange);
+        }
+
+        .question-container {
+            margin-bottom: 6px;
+        }
+
+        .question-text {
+            font-size: 0.5625rem;
+            font-weight: 700;
+            margin-bottom: 4.5px;
+            color: var(--dark-blue);
+        }
+
+        /* Style for KaTeX rendered equations */
+        .question-text .katex,
+        .option .katex {
+            font-size: 1em;
+        }
+
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3px;
+            margin-bottom: 6px;
+        }
+
+        .option {
+            padding: 3.75px 6px;
+            border: 1.5px solid var(--light-blue);
+            border-radius: 3.75px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            background: #f8fafc;
+            font-size: 0.525rem;
+            position: relative;
+        }
+
+        .option:hover {
+            border-color: var(--primary-blue);
+            background: #e0f2fe;
+            transform: translateY(-1px);
+        }
+
+        .option.selected {
+            border-color: var(--primary-blue);
+            background: #dbeafe;
+        }
+
+        .option.correct {
+            border-color: var(--accent-green);
+            background: #d1fae5;
+        }
+
+        .option.incorrect {
+            border-color: var(--accent-red);
+            background: #fee2e2;
+        }
+
+        .option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .reasoning {
+            background: #f8fafc;
+            border-radius: 3.75px;
+            padding: 6px;
+            margin-top: 6px;
+            display: none;
+            border-left: 2.25px solid var(--primary-blue);
+            font-size: 0.525rem;
+        }
+
+        .reasoning-title {
+            font-weight: 700;
+            margin-bottom: 3px;
+            color: var(--dark-blue);
+            font-size: 0.5625rem;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            margin-top: 9px;
+        }
+
+        .nav-btn {
+            padding: 3.75px 5.25px;
+            border-radius: 3.75px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            font-size: 0.525rem;
+            display: flex;
+            align-items: center;
+            gap: 2.25px;
+            justify-content: center;
+            width: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-back {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            color: white;
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+            color: white;
+        }
+
+        .btn-reasoning {
+            background: var(--reasoning-disabled);
+            color: white;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .btn-reasoning.enabled {
+            background: var(--reasoning-enabled);
+            cursor: pointer;
+            opacity: 1;
+        }
+
+        .btn-reasoning.enabled:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+        }
+
+        .btn-submit {
+            background: var(--gradient-green);
+            color: white;
+        }
+
+        .results-header-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 3.75px;
+            margin-bottom: 9px;
+        }
+
+        .results-header-buttons .btn {
+            padding: 3px 4.5px;
+            font-size: 0.4875rem;
+            width: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .submission-message {
+            background: linear-gradient(135deg, #f8fafc, #e0f2fe);
+            border-radius: 4px;
+            padding: 9px;
+            text-align: center;
+            margin-bottom: 9px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--accent-green);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.6rem;
+            line-height: 1.3;
+        }
+
+        .submission-message h2 {
+            font-size: 0.75rem;
+            margin-bottom: 4.5px;
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        .submission-message p {
+            font-size: 0.525rem;
+            margin-bottom: 3px;
+            color: var(--dark-blue);
+            font-weight: 400;
+        }
+
+        .submission-icon {
+            font-size: 1.5rem;
+            color: var(--accent-green);
+            margin-bottom: 6px;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, #f8fafc, #e0f2fe);
+            border-radius: 6px;
+            padding: 9px;
+            text-align: center;
+            margin-bottom: 9px;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .result-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-vibrant);
+        }
+
+        .result-card h2 {
+            font-size: 0.675rem;
+            margin-bottom: 6px;
+            color: var(--dark-blue);
+        }
+
+        .result-card table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.525rem;
+            margin-top: 6px;
+            box-shadow: var(--shadow);
+        }
+
+        .result-card th, .result-card td {
+            padding: 3.75px;
+            border: 1px solid #dbeafe;
+            text-align: left;
+        }
+
+        .result-card th {
+            background-color: var(--light-blue);
+            font-weight: 600;
+        }
+
+        .result-card td {
+            background-color: #f8fafc;
+        }
+
+        .result-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 4.5px;
+            margin-top: 9px;
+        }
+
+        .result-actions .btn {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .all-mcqs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 11.25px;
+        }
+
+        .all-mcq-item {
+            padding: 7.5px;
+            border: 1px solid var(--light-blue);
+            border-radius: 6px;
+            background: #f8fafc;
+            position: relative;
+        }
+
+        .all-mcq-item .question-text {
+            color: var(--dark-blue);
+            font-size: 0.6rem;
+            font-weight: 700;
+        }
+
+        .all-mcq-options {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            margin-top: 4.5px;
+        }
+
+        .all-mcq-option {
+            font-size: 0.525rem;
+            padding: 3px 4.5px;
+            border-radius: 3px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .all-mcq-option.correct {
+            background: #d1fae5;
+            color: var(--accent-green);
+            font-weight: 600;
+            border-color: #a7f3d0;
+        }
+
+        .all-mcq-reasoning {
+            margin-top: 6px;
+            font-size: 0.525rem;
+            color: #4b5563;
+            padding: 6px;
+            background: #f8fafc;
+            border-radius: 3px;
+            border-left: 2.25px solid var(--primary-blue);
+        }
+
+        .all-mcq-reasoning strong {
+            color: var(--dark-blue);
+        }
+
+        .quick-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 9px;
+            gap: 6px;
+        }
+
+        .stat-card {
+            flex: 1;
+            background: white;
+            border-radius: 4.5px;
+            padding: 6px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-top: 2px solid var(--primary-blue);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card.correct {
+            border-top-color: var(--accent-green);
+        }
+
+        .stat-card.incorrect {
+            border-top-color: var(--accent-red);
+        }
+
+        .stat-card.unanswered {
+            border-top-color: var(--accent-orange);
+        }
+
+        .stat-value {
+            font-size: 0.9rem;
+            font-weight: 800;
+            margin-bottom: 1.5px;
+        }
+
+        .stat-label {
+            font-size: 0.4875rem;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        .performance-meter {
+            width: 100%;
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 6px 0;
+        }
+
+        .performance-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.4s ease;
+            background: var(--gradient-vibrant);
+        }
+
+        @media (max-width: 768px) {
+            .quiz-header {
+                flex-direction: column;
+                gap: 4.5px;
+                align-items: flex-start;
+            }
+            
+            .navigation-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .timer-container {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-top: 3.75px;
+                justify-content: flex-end;
+                width: 100%;
+            }
+            
+            .quiz-title-container {
+                width: 100%;
+            }
+            
+            .result-actions {
+                flex-direction: column;
+            }
+            
+            .promo-banner {
+                padding: 9px;
+            }
+            
+            .promo-banner h2 {
+                font-size: 0.6rem;
+            }
+            
+            .promo-banner p {
+                font-size: 0.4125rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-notification" id="quiz-notification">
+        <div class="quiz-notification-content">
+            <div class="quiz-notification-title" id="notification-title">Quiz Progress Found</div>
+            <div class="quiz-notification-message" id="notification-message">You have an unfinished quiz. Do you want to continue where you left off?</div>
+            <div class="quiz-notification-actions">
+                <button class="quiz-notification-btn secondary" id="notification-no">Start Fresh</button>
+                <button class="quiz-notification-btn primary" id="notification-yes">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="logo">
+            <h1 id="dynamic-academy-name">MedPlex MDCAT Academy</h1>
+            <p id="dynamic-academy-tagline">Excellence in Medical Education</p>
+        </div>
+
+        <div id="signin-page" class="page active">
+            <div class="promo-banner" id="dynamic-promo-banner">
+                <h2><i class="fas fa-graduation-cap"></i> Unlock Your Potential with <span id="promo-academy-name">MedPlex MDCAT Academy</span></h2>
+                <p id="promo-banner-text">Boost your preparation with our realistic MDCAT tests, crafted by medical experts to mirror the actual exam's pattern and challenge. Experience instant feedback, detailed analysis, and flexible online access – your pathway to confidence and success!</p>
+            </div>
+            
+            <h2><i class="fas fa-lock"></i> Access Test</h2>
+            <p>Sign in or use your access code</p>
+            
+            <div class="main-page-buttons">
+                <button class="btn btn-primary" onclick="showQuizAccessForm()">
+                    <i class="fas fa-key"></i>
+                    <span>Sign In with Quiz Access Code</span>
+                </button>
+                <button class="btn btn-primary" onclick="showRegistrationPage()">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Sign Up to Get Quiz Access</span>
+                </button>
+                <button class="btn btn-purple" onclick="showDeveloperAccessForm()">
+                    <i class="fas fa-code"></i>
+                    <span>Developer Access</span>
+                </button>
+            </div>
+            
+            <div id="developer-access-form" class="quiz-access-section">
+                <h3><i class="fas fa-user-secret"></i> Developer Login</h3>
+                <div class="password-container input-container">
+                    <input type="password" id="developerPassword" class="form-input" placeholder="Enter the Developer Password">
+                    <i class="fas fa-eye-slash input-icon" id="toggleDeveloperPassword"></i>
+                </div>
+                <button class="btn btn-purple" onclick="checkDeveloperPassword()">
+                    <span>Log In</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <div id="dev-error-box" class="error-box">
+                    <i class="fas fa-exclamation-circle"></i> Invalid developer password.
+                </div>
+            </div>
+            
+            <div id="quiz-access-form" class="quiz-access-section">
+                <h3><i class="fas fa-key"></i> Enter Quiz Access Code</h3>
+                <div class="password-container input-container">
+                    <input type="password" id="quizAccessCode" class="form-input" placeholder="Enter your 12-Digit Quiz Access Code here">
+                    <i class="fas fa-eye-slash input-icon" id="toggleQuizAccessCode"></i>
+                </div>
+                <button class="btn btn-primary" onclick="accessQuiz(document.getElementById('quizAccessCode').value)">
+                    <span>Access Quiz</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <div id="quiz-error-box" class="error-box">
+                    <i class="fas fa-exclamation-circle"></i> Invalid quiz access code.
+                </div>
+            </div>
+            
+        </div>
+
+        <div id="registration-page" class="page">
+            <div class="promo-banner" id="dynamic-promo-banner-2">
+                <h2><i class="fas fa-graduation-cap"></i> Unlock Your Potential with <span id="promo-academy-name-2">MedPlex MDCAT Academy</span></h2>
+                <p id="promo-banner-text-2">Boost your preparation with our realistic MDCAT tests, crafted by medical experts to mirror the actual exam's pattern and challenge. Experience instant feedback, detailed analysis, and flexible online access – your pathway to confidence and success!</p>
+            </div>
+            
+            <h2><i class="fas fa-user-edit"></i> Student Registration</h2>
+            <p>Please provide your details to register</p>
+            
+            <div class="form-group">
+                <label class="form-label"><i class="fas fa-user"></i> Student Name</label>
+                <input type="text" id="studentName" class="form-input" placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label class="form-label"><i class="fas fa-user-friends"></i> Father Name</label>
+                <input type="text" id="fatherName" class="form-input" placeholder="Enter your father's name">
+            </div>
+            <div class="form-group">
+                <label class="form-label"><i class="fas fa-envelope"></i> Email Address</label>
+                <input type="email" id="email" class="form-input" placeholder="Enter your email address">
+            </div>
+            <div class="form-group">
+                <label class="form-label"><i class="fas fa-phone"></i> Mobile Number (WhatsApp)</label>
+                <input type="tel" id="mobile" class="form-input" placeholder="+92XXXXXXXXXX">
+            </div>
+            <div class="form-group">
+                <label class="form-label"><i class="fas fa-city"></i> City / District</label>
+                <input type="text" id="city" class="form-input" placeholder="Enter your city/district">
+            </div>
+            <button class="btn btn-primary" onclick="handleRegistration()">
+                <span>Submit to Get Access to Quiz</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+            <button class="btn btn-red" style="margin-top: 3.75px;" onclick="showPage('signin-page')">
+                <i class="fas fa-chevron-left"></i> Back to Home
+            </button>
+        </div>
+
+        <div id="quiz-page" class="page">
+            <div class="promo-banner" id="dynamic-promo-banner-3">
+                <h2><i class="fas fa-graduation-cap"></i> Unlock Your Potential with <span id="promo-academy-name-3">MedPlex MDCAT Academy</span></h2>
+                <p id="promo-banner-text-3">Boost your preparation with our realistic MDCAT tests, crafted by medical experts to mirror the actual exam's pattern and challenge. Experience instant feedback, detailed analysis, and flexible online access – your pathway to confidence and success!</p>
+            </div>
+
+            <div class="quiz-header">
+                <div class="quiz-title-container">
+                    <h2 id="quiz-title"></h2>
+                    <div class="quiz-info">
+                        <span><i class="fas fa-book"></i> Subject: <span id="quiz-subject">Biology</span></span>
+                        <span><i class="fas fa-clock"></i> Per MCQ: <span id="per-mcq-time">1</span> Minute</span>
+                    </div>
+                </div>
+            </div>
+            <div class="timer-container">
+                <div class="timer" id="question-timer">60</div>
+                <div class="timer total-timer" id="timer">40:00</div>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar" id="quiz-progress"></div>
+            </div>
+
+            <div class="question-nav" id="question-nav"></div>
+            
+            <div class="question-container">
+                <div class="question-text" id="question-text"></div>
+                <div class="options-container" id="options-container"></div>
+                <div class="reasoning" id="reasoning">
+                    <div class="reasoning-title"><i class="fas fa-lightbulb"></i> Explanation:</div>
+                    <div id="reasoning-text"></div>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="nav-btn btn-back" onclick="navigateQuestion('prev')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <button class="nav-btn btn-next" onclick="navigateQuestion('next')">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="nav-btn btn-reasoning" id="reasoning-btn" onclick="toggleReasoning()">
+                    <i class="fas fa-lightbulb"></i> Reasoning
+                </button>
+                <button class="nav-btn btn-submit" onclick="submitTest()">
+                    Submit <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="results-page" class="page">
+            <div class="results-header-buttons">
+                <a id="website-link" href="#" target="_blank" class="btn btn-primary"><i class="fas fa-globe"></i> Website</a>
+                <a id="whatsapp-contact-link" href="#" target="_blank" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Whatsapp Contact</a>
+                <a id="whatsapp-community-link" href="#" target="_blank" class="btn btn-primary"><i class="fas fa-users"></i> Whatsapp Community</a>
+            </div>
+            
+            <div class="submission-message" id="submission-message">
+                <div class="submission-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Test Submitted Successfully!</h2>
+                <p>Your test has been submitted to our system.</p>
+                <p>You will receive your Detailed Marks Certificate (DMC) via email, phone number, or WhatsApp within 24 hours.</p>
+                <p>Please check your spam folder if you don't see the email.</p>
+                <p>Thank you for taking the test!</p>
+            </div>
+            
+            <div class="result-card">
+                <h2><i class="fas fa-user-graduate"></i> Student Information</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody id="student-info-table"></tbody>
+                </table>
+            </div>
+            
+            <div class="result-actions" id="result-actions">
+                <button class="btn btn-primary" onclick="restartTest()" id="retake-full-btn">
+                    <i class="fas fa-redo"></i> Retake Full Test
+                </button>
+                <button class="btn btn-primary" onclick="retakeIncorrect()" id="retake-incorrect-btn">
+                    <i class="fas fa-bolt"></i> Retake Incorrect Questions
+                </button>
+                <button class="btn btn-primary" onclick="viewAllMcqs()">
+                    <i class="fas fa-clipboard-list"></i> View All MCQs
+                </button>
+            </div>
+        </div>
+
+        <div id="all-mcqs-page" class="page">
+            <h2><i class="fas fa-list-alt"></i> All MCQs and Solutions</h2>
+            <div class="all-mcqs-list" id="all-mcqs-list"></div>
+            <button class="btn btn-primary" onclick="showPage('results-page')">
+                <i class="fas fa-arrow-left"></i> Back to Results
+            </button>
+        </div>
+    </div>
+    
+    <script>
+// ***************************************************************
+// !! IMPORTANT: GOOGLE APPS SCRIPT URL FOR DATA LOGGING !!
+const SHEET_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyW49ISh--6_FE1KbyXXuWN-lbaU3KHRH8vOlBNjyvgHPMEveaf2BDOlfE_k6dC2-MJ/exec';
+// ***************************************************************
+
+// Quiz Data
+const quizData_MDCAT_001 = [
+    {
+        question: `Which property of the respiratory surface ensures that diffusion occurs efficiently over very short distances?`,
+        options: [
+            `Good blood supply`,
+            `Moist and permeable nature`,
+            `Thinness`,
+            `Large surface area`
+        ],
+        correctAnswer: 2,
+        reasoning: `According to the Federal textbook, the respiratory surface must be thin because diffusion is only efficient over a distance of 1 mm or less.`
+    },
+    {
+        question: `What structure prevents food from entering the nasal cavity during swallowing?`,
+        options: [
+            `Epiglottis`,
+            `Uvula`,
+            `Glottis`,
+            `Larynx`
+        ],
+        correctAnswer: 1,
+        reasoning: `As per the Federal book, the uvula and soft palate move together during swallowing to close the nasopharynx and prevent food from entering the nasal cavity.`
+    },
+    {
+        question: `The cartilaginous rings in the trachea are incomplete in which direction to allow for esophageal expansion?`,
+        options: [
+            `Anteriorly`,
+            `Posteriorly`,
+            `Laterally`,
+            `Inferiorly`
+        ],
+        correctAnswer: 1,
+        reasoning: `The KPK textbook states that the tracheal rings are C-shaped (horse shoe shaped) and open towards the back (posteriorly).`
+    },
+    {
+        question: `What is the primary function of the surfactant secreted by alveolar cells?`,
+        options: [
+            `To warm the incoming air`,
+            `To trap foreign particles`,
+            `To reduce surface tension within the alveoli`,
+            `To produce mucus for lubrication`
+        ],
+        correctAnswer: 2,
+        reasoning: `The KPK textbook explains that surfactant lowers the surface tension of the fluid lining the alveolus, reducing the effort needed for inflation.`
+    },
+    {
+        question: `During forced exhalation, which muscle group is primarily contracted?`,
+        options: [
+            `External intercostals`,
+            `Diaphragm`,
+            `Internal intercostals`,
+            `Abdominal muscles`
+        ],
+        correctAnswer: 2,
+        reasoning: `The Federal textbook details that during expiration, relaxation of external intercostals and contraction of internal intercostals cause the rib cage to move downward and backward.`
+    },
+    {
+        question: `Which part of the brain contains the expiratory center responsible for inhibiting inspiration?`,
+        options: [
+            `Cerebrum`,
+            `Pons`,
+            `Medulla oblongata`,
+            `Cerebellum`
+        ],
+        correctAnswer: 2,
+        reasoning: `Both textbooks locate the breathing centers in the medulla oblongata, with the dorsal and lateral portions forming the expiratory center (Federal book).`
+    },
+    {
+        question: `At what partial pressure of oxygen (PO₂) does myoglobin primarily release its stored oxygen to muscle tissues?`,
+        options: [
+            `40 mmHg`,
+            `60 mmHg`,
+            `95 mmHg`,
+            `20 mmHg`
+        ],
+        correctAnswer: 3,
+        reasoning: `The Federal textbook specifies that myoglobin releases oxygen when the partial pressure of oxygen falls below 20 mmHg.`
+    },
+    {
+        question: `What is the term for the movement of chloride ions into red blood cells in exchange for bicarbonate ions leaving?`,
+        options: [
+            `Bohr effect`,
+            `Haldane effect`,
+            `Chloride shift`,
+            `Hamburger's phenomenon`
+        ],
+        correctAnswer: 2,
+        reasoning: `Both textbooks describe the "chloride shift" or "Hamburger's phenomenon" as the exchange of chloride and bicarbonate ions across the RBC membrane.`
+    },
+    {
+        question: `Which of the following is NOT a property required for an effective respiratory surface?`,
+        options: [
+            `Dry and impermeable`,
+            `Extensive blood supply`,
+            `Large surface area`,
+            `Thin membrane`
+        ],
+        correctAnswer: 0,
+        reasoning: `The first property listed in both books is that the respiratory surface must be moist and permeable to allow gases to pass through.`
+    },
+    {
+        question: `What is the approximate total number of alveoli in an adult human lung?`,
+        options: [
+            `300 million`,
+            `500 million`,
+            `700 million`,
+            `1 billion`
+        ],
+        correctAnswer: 2,
+        reasoning: `Both textbooks state there are over 700 million alveoli in the lungs.`
+    },
+    {
+        question: `The right main bronchus differs from the left in which of the following ways?`,
+        options: [
+            `It is longer and narrower`,
+            `It is more horizontal`,
+            `It has a larger diameter and is shorter`,
+            `It contains no cartilaginous support`
+        ],
+        correctAnswer: 2,
+        reasoning: `The KPK textbook notes that the right bronchus has a larger diameter and is shorter than the left.`
+    },
+    {
+        question: `What percentage of carbon dioxide is transported in the blood as dissolved gas in plasma?`,
+        options: [
+            `7%`,
+            `23%`,
+            `70%`,
+            `85%`
+        ],
+        correctAnswer: 0,
+        reasoning: `The KPK textbook states that only 7% of CO₂ is carried as dissolved gas in plasma.`
+    },
+    {
+        question: `During inspiration, what happens to the pressure within the pleural cavities?`,
+        options: [
+            `It increases above atmospheric pressure`,
+            `It decreases, creating a partial vacuum`,
+            `It remains equal to atmospheric pressure`,
+            `It fluctuates rapidly`
+        ],
+        correctAnswer: 1,
+        reasoning: `The KPK book explains that the enlargement of the pleural cavities during inspiration tends to create a partial vacuum within them.`
+    },
+    {
+        question: `Which respiratory pigment is blue when oxygenated and is found in molluscs?`,
+        options: [
+            `Haemoglobin`,
+            `Myoglobin`,
+            `Haemocyanin`,
+            `Chlorocruorin`
+        ],
+        correctAnswer: 2,
+        reasoning: `The KPK textbook mentions haemocyanin in molluscs, which is blue when oxygenated.`
+    },
+    {
+        question: `The condition characterized by spasmodic contraction of the diaphragm with a closed glottis is known as:`,
+        options: [
+            `Sneezing`,
+            `Snoring`,
+            `Hiccup`,
+            `Coughing`
+        ],
+        correctAnswer: 2,
+        reasoning: `The Federal textbook defines hiccups as the spasmodic contraction of the diaphragm while the glottis is closed.`
+    },
+    {
+        question: `What is the primary cause of the majority of lung cancer cases according to the text?`,
+        options: [
+            `Air pollution`,
+            `Genetic factors`,
+            `Cigarette smoking`,
+            `Occupational hazards`
+        ],
+        correctAnswer: 2,
+        reasoning: `The Federal textbook states that cigarette smoking causes about 87% of lung cancer.`
+    },
+    {
+        question: `Where are the vocal cords located?`,
+        options: [
+            `Nasopharynx`,
+            `Trachea`,
+            `Larynx`,
+            `Bronchi`
+        ],
+        correctAnswer: 2,
+        reasoning: `Both textbooks describe the vocal cords as folds of mucous membrane stretching across the larynx.`
+    },
+    {
+        question: `What is the average tidal volume for an adult human during normal, quiet breathing?`,
+        options: [
+            `300 ml`,
+            `500 ml`,
+            `1200 ml`,
+            `3000 ml`
+        ],
+        correctAnswer: 1,
+        reasoning: `Both textbooks specify the average tidal volume is approximately 500 ml.`
+    },
+    {
+        question: `Which enzyme catalyzes the reversible reaction between carbon dioxide and water to form carbonic acid?`,
+        options: [
+            `Carboxylase`,
+            `Carbonic anhydrase`,
+            `Decarboxylase`,
+            `Catalase`
+        ],
+        correctAnswer: 1,
+        reasoning: `The reaction CO₂ + H₂O ⇌ H₂CO₃ is catalyzed by the enzyme carbonic anhydrase, as detailed in both books.`
+    },
+    {
+        question: `What structure marks the point where the trachea bifurcates into the two primary bronchi?`,
+        options: [
+            `Carina`,
+            `Hilum`,
+            `Epiglottis`,
+            `Glottis`
+        ],
+        correctAnswer: 0,
+        reasoning: `The KPK textbook states the trachea extends from the cricoid cartilage to the carina, the cartilaginous ridge where it divides.`
+    },
+    {
+        question: `In the oxygen-haemoglobin dissociation curve, what effect does a decrease in pH have on oxygen affinity?`,
+        options: [
+            `Increases affinity (shift left)`,
+            `Decreases affinity (shift right)`,
+            `No effect on affinity`,
+            `Causes complete dissociation`
+        ],
+        correctAnswer: 1,
+        reasoning: `The Federal book's "Science Titbits" section explains that a drop in pH decreases the oxygen-carrying capacity, related to the Bohr effect which shifts the curve right.`
+    },
+    {
+        question: `The triangular depression on the medial surface of the lung where vessels and airways enter is called the:`,
+        options: [
+            `Apex`,
+            `Base`,
+            `Hilum`,
+            `Carina`
+        ],
+        correctAnswer: 2,
+        reasoning: `The Federal textbook defines the hilum as the triangular depression where blood vessels and airways pass into the lungs.`
+    },
+    {
+        question: `Which of the following is a direct consequence of the chloride shift in red blood cells?`,
+        options: [
+            `Formation of oxyhaemoglobin`,
+            `Maintenance of ionic balance`,
+            `Increase in blood pH`,
+            `Release of oxygen to tissues`
+        ],
+        correctAnswer: 1,
+        reasoning: `Both texts describe the chloride shift as an exchange mechanism that maintains the balance of ions across the RBC membrane.`
+    },
+    {
+        question: `What is the primary role of the nasal vestibule?`,
+        options: [
+            `Gas exchange`,
+            `Housing olfactory receptors`,
+            `Containing hairs for filtration`,
+            `Warming air to body temperature`
+        ],
+        correctAnswer: 2,
+        reasoning: `The Federal book states the anterior parts of the nasal cavities near the nostrils are vestibules containing a network of hairs.`
+    },
+    {
+        question: `Which lung has a cardiac notch to accommodate the heart?`,
+        options: [
+            `Right lung`,
+            `Left lung`,
+            `Both lungs`,
+            `Neither lung`
+        ],
+        correctAnswer: 1,
+        reasoning: `The Federal book mentions the left lung shares space with the heart, implying the presence of a cardiac notch.`
+    },
+    {
+        question: `What is the approximate surface area provided by the alveoli for gas exchange?`,
+        options: [
+            `30-40 m²`,
+            `50-60 m²`,
+            `70-90 m²`,
+            `100-120 m²`
+        ],
+        correctAnswer: 2,
+        reasoning: `A "Tidbit" in the KPK book states alveoli represent a total surface area of 70-90 m².`
+    },
+    {
+        question: `Which of the following is NOT a section of the pharynx?`,
+        options: [
+            `Nasopharynx`,
+            `Oropharynx`,
+            `Laryngopharynx`,
+            `Tracheopharynx`
+        ],
+        correctAnswer: 3,
+        reasoning: `Both textbooks divide the pharynx into naso-, oro-, and laryngopharynx only.`
+    },
+    {
+        question: `At rest, what percentage of haemoglobin in arterial blood is typically saturated with oxygen?`,
+        options: [
+            `75%`,
+            `85%`,
+            `97%`,
+            `100%`
+        ],
+        correctAnswer: 2,
+        reasoning: `A "Science Titbit" in the Federal book states arterial blood is normally 97% saturated (PO₂ 95 mmHg).`
+    },
+    {
+        question: `What is the functional advantage of the one-way airflow in avian lungs compared to human lungs?`,
+        options: [
+            `It allows flying at high speeds`,
+            `It eliminates dead air space (residual volume)`,
+            `It reduces the need for haemoglobin`,
+            `It increases lung size`
+        ],
+        correctAnswer: 1,
+        reasoning: `The Federal book explains birds perform better at high altitudes partly because one-way airflow means no dead air in the lung.`
+    },
+    {
+        question: `The contraction of which muscle is primarily responsible for flattening the dome of the diaphragm during inspiration?`,
+        options: [
+            `External intercostals`,
+            `Internal intercostals`,
+            `Diaphragm itself`,
+            `Abdominal muscles`
+        ],
+        correctAnswer: 2,
+        reasoning: `Both books describe that contraction of the diaphragm causes it to flatten.`
+    },
+    {
+        question: `Carbon monoxide poisoning is particularly dangerous because CO binds to haemoglobin with an affinity how many times greater than oxygen?`,
+        options: [
+            `50 times`,
+            `100 times`,
+            `200 times`,
+            `246 times`
+        ],
+        correctAnswer: 3,
+        reasoning: `The Federal textbook specifically states CO binds to haemoglobin with an affinity 246 times greater than oxygen.`
+    },
+    {
+        question: `What type of epithelium lines the alveoli to facilitate gas exchange?`,
+        options: [
+            `Ciliated columnar`,
+            `Stratified squamous`,
+            `Moist squamous`,
+            `Cuboidal epithelium`
+        ],
+        correctAnswer: 2,
+        reasoning: `Both textbooks state the alveoli are lined with moist squamous epithelium.`
+    },
+    {
+        question: `The amount of air that can be forcibly exhaled after a normal tidal exhalation is termed:`,
+        options: [
+            `Tidal Volume`,
+            `Inspiratory Reserve Volume`,
+            `Expiratory Reserve Volume`,
+            `Residual Volume`
+        ],
+        correctAnswer: 2,
+        reasoning: `The KPK textbook defines Expiratory Reserve Volume (ERV) as the air exhaled forcibly after a normal tidal exhalation.`
+    },
+    {
+        question: `In the blood, hydrogen ions produced from carbonic acid dissociation are primarily buffered by:`,
+        options: [
+            `Plasma proteins`,
+            `Bicarbonate ions`,
+            `Haemoglobin`,
+            `Phosphate ions`
+        ],
+        correctAnswer: 2,
+        reasoning: `Both books explain that haemoglobin buffers the hydrogen ions to prevent a drop in pH.`
+    },
+    {
+        question: `What is the name of the phenomenon where oxygen unloading at tissues is enhanced by increased CO₂ and decreased pH?`,
+        options: [
+            `Haldane effect`,
+            `Chloride shift`,
+            `Bohr effect`,
+            `Hamburger's phenomenon`
+        ],
+        correctAnswer: 2,
+        reasoning: `While not named in the excerpts, the described relationship (increased CO₂/decreased pH decreasing O₂ affinity) is the Bohr effect, a standard concept related to the content.`
+    },
+    {
+        question: `Which part of the respiratory system is composed of dense regular tissue, smooth muscle, and C-shaped cartilages?`,
+        options: [
+            `Larynx`,
+            `Trachea`,
+            `Bronchi`,
+            `Bronchioles`
+        ],
+        correctAnswer: 1,
+        reasoning: `The Federal book describes the trachea as consisting of dense regular tissue, smooth muscle, and C-shaped cartilage pieces.`
+    },
+    {
+        question: `The smallest airway branches that lack any cartilaginous support are the:`,
+        options: [
+            `Primary bronchi`,
+            `Secondary bronchi`,
+            `Tertiary bronchi`,
+            `Bronchioles`
+        ],
+        correctAnswer: 3,
+        reasoning: `Both texts state that bronchioles are the first branches that do not contain cartilage.`
+    },
+    {
+        question: `What is the primary stimulus for the involuntary control center in the medulla to increase breathing rate?`,
+        options: [
+            `Decrease in blood oxygen (O₂)`,
+            `Increase in blood carbon dioxide (CO₂)`,
+            `Decrease in blood pH`,
+            `Both b and c`
+        ],
+        correctAnswer: 3,
+        reasoning: `The KPK book mentions the influence of O₂ is minor, while the Federal book implies the center responds to chemical changes (like CO₂ and pH).`
+    },
+    {
+        question: `Snoring is primarily caused by the vibration of which structure?`,
+        options: [
+            `Vocal cords`,
+            `Epiglottis`,
+            `Soft palate`,
+            `Tongue`
+        ],
+        correctAnswer: 2,
+        reasoning: `The KPK textbook states snoring noise is usually made by vibration of the soft palate.`
+    },
+    {
+        question: `How many lobes does the right human lung typically have?`,
+        options: [
+            `Two`,
+            `Three`,
+            `Four`,
+            `Five`
+        ],
+        correctAnswer: 1,
+        reasoning: `Both textbooks state the right lung has three lobes.`
+    },
+    {
+        question: `The binding of oxygen to haemoglobin is correctly represented as:`,
+        options: [
+            `Hb + O₂ → HbO`,
+            `Hb + 4O₂ → Hb4O₂`,
+            `Hb + CO₂ → HbCO₂`,
+            `Hb + O₂ → HbO₂`
+        ],
+        correctAnswer: 1,
+        reasoning: `The Federal book shows the reaction as Hb + 4O₂ → Hb4O₂ (oxyhaemoglobin).`
+    },
+    {
+        question: `Which of the following is a function of the mucous membrane in the nasal cavity?`,
+        options: [
+            `Producing surfactant`,
+            `Filtering and moistening air`,
+            `Producing vocal sounds`,
+            `Exchanging gases`
+        ],
+        correctAnswer: 1,
+        reasoning: `Both books state mucus and cilia in the nasal cavity filter and moisten the air.`
+    },
+    {
+        question: `What is the approximate length of the adult human trachea?`,
+        options: [
+            `5 cm`,
+            `11 cm`,
+            `20 cm`,
+            `30 cm`
+        ],
+        correctAnswer: 1,
+        reasoning: `The KPK textbook specifies the trachea is approximately 11 cm long.`
+    },
+    {
+        question: `The internal intercostal muscles have which primary action on the rib cage during forced expiration?`,
+        options: [
+            `Elevate and expand it`,
+            `Depress and compress it`,
+            `Stabilize it`,
+            `Rotate it`
+        ],
+        correctAnswer: 1,
+        reasoning: `The Federal book states contraction of internal intercostals during expiration causes the rib cage to move downward and backward.`
+    },
+    {
+        question: `Myoglobin is primarily found in:`,
+        options: [
+            `Red blood cells`,
+            `Lung tissue`,
+            `Skeletal and cardiac muscles`,
+            `Liver tissue`
+        ],
+        correctAnswer: 2,
+        reasoning: `The Federal book states myoglobin is found in skeletal muscles and acts as an oxygen store.`
+    },
+    {
+        question: `The term "ventilation" in the context of respiration specifically refers to:`,
+        options: [
+            `Gas exchange in alveoli`,
+            `Transport of gases in blood`,
+            `The mechanical movement of air into and out of the lungs`,
+            `Cellular respiration`
+        ],
+        correctAnswer: 2,
+        reasoning: `Both books use "ventilation" synonymously with the mechanism of breathing (inspiration and expiration).`
+    },
+    {
+        question: `What is the primary route of air entry during normal, quiet breathing?`,
+        options: [
+            `Mouth`,
+            `Nose`,
+            `Tracheostomy`,
+            `Either nose or mouth`
+        ],
+        correctAnswer: 1,
+        reasoning: `While both are possible, the texts emphasize the nose's role in filtration, warming, and moistening, implying it's the primary route.`
+    },
+    {
+        question: `The phrenic nerve is responsible for innervating which respiratory muscle?`,
+        options: [
+            `External intercostals`,
+            `Internal intercostals`,
+            `Diaphragm`,
+            `Abdominal muscles`
+        ],
+        correctAnswer: 2,
+        reasoning: `The KPK book states the breathing centre communicates with the diaphragm by the phrenic nerves.`
+    },
+    {
+        question: `Which of the following structures is NOT part of the lower respiratory tract?`,
+        options: [
+            `Larynx`,
+            `Trachea`,
+            `Pharynx`,
+            `Bronchioles`
+        ],
+        correctAnswer: 2,
+        reasoning: `The Federal book divides the system; the pharynx is part of the upper respiratory tract.`
+    },
+    {
+        question: `The bright red color of oxygenated blood is primarily due to:`,
+        options: [
+            `Plasma`,
+            `Deoxyhaemoglobin`,
+            `Oxyhaemoglobin`,
+            `Carbaminohaemoglobin`
+        ],
+        correctAnswer: 2,
+        reasoning: `The KPK book states oxyhaemoglobin is bright red and contributes to the color of oxygenated blood.`
+    },
+    {
+        question: `In the lungs, oxygen diffuses from the alveoli into the:`,
+        options: [
+            `Arterioles`,
+            `Venules`,
+            `Pulmonary capillaries`,
+            `Bronchial arteries`
+        ],
+        correctAnswer: 2,
+        reasoning: `Both texts describe a dense network of blood capillaries on the outside of each alveolus where gas exchange occurs.`
+    },
+    {
+        question: `The maximum volume of air that can be inspired after a normal tidal inspiration is called:`,
+        options: [
+            `Tidal Volume`,
+            `Inspiratory Reserve Volume`,
+            `Expiratory Reserve Volume`,
+            `Vital Capacity`
+        ],
+        correctAnswer: 1,
+        reasoning: `The KPK textbook defines Inspiratory Reserve Volume (IRV) as the air that can be forcibly inhaled after a normal tidal volume in.`
+    },
+    {
+        question: `Which of the following conditions would most likely cause a leftward shift in the oxygen-haemoglobin dissociation curve?`,
+        options: [
+            `Increased temperature`,
+            `Decreased pH (acidity)`,
+            `Increased 2,3-DPG`,
+            `Decreased CO₂`
+        ],
+        correctAnswer: 3,
+        reasoning: `Based on principles inferred from the texts (e.g., CO₂ and pH effects), a decrease in CO₂ (often associated with increased pH) increases affinity, shifting the curve left.`
+    },
+    {
+        question: `The enzyme carbonic anhydrase is primarily located within:`,
+        options: [
+            `Blood plasma`,
+            `Lung epithelium`,
+            `Red blood cells`,
+            `Alveolar surfactant`
+        ],
+        correctAnswer: 2,
+        reasoning: `Both books describe the reaction CO₂ + H₂O → H₂CO₃ occurring in red blood cells in the presence of carbonic anhydrase.`
+    },
+    {
+        question: `What is the primary anatomical reason the left lung is smaller than the right?`,
+        options: [
+            `To make room for the liver`,
+            `To accommodate the heart`,
+            `Because the diaphragm is higher on the left`,
+            `Due to the position of the stomach`
+        ],
+        correctAnswer: 1,
+        reasoning: `The Federal book states the left lung is smaller because of the asymmetrical position of the heart.`
+    },
+    {
+        question: `The epiglottis functions to:`,
+        options: [
+            `Produce sound`,
+            `Filter air`,
+            `Cover the glottis during swallowing`,
+            `Warm incoming air`
+        ],
+        correctAnswer: 2,
+        reasoning: `Both books state the epiglottis folds down to cover the glottis (opening of the larynx) during swallowing.`
+    },
+    {
+        question: `Which of the following is a direct effect of cigarette smoke on the respiratory system?`,
+        options: [
+            `Increased ciliary action`,
+            `Dilation of bronchioles`,
+            `Destruction of cilia`,
+            `Increased surfactant production`
+        ],
+        correctAnswer: 2,
+        reasoning: `The Federal book lists that smokers get pneumonia because damaged or destroyed cilia cannot protect from bacteria.`
+    },
+    {
+        question: `The partial pressure of oxygen in venous blood returning to the lungs is approximately:`,
+        options: [
+            `40 mmHg`,
+            `60 mmHg`,
+            `95 mmHg`,
+            `100 mmHg`
+        ],
+        correctAnswer: 0,
+        reasoning: `A "Science Titbit" in the Federal book gives the PO₂ of venous blood as 40 mmHg.`
+    },
+    {
+        question: `What structure separates the thoracic cavity from the abdominal cavity?`,
+        options: [
+            `Mediastinum`,
+            `Pleura`,
+            `Diaphragm`,
+            `Pericardium`
+        ],
+        correctAnswer: 2,
+        reasoning: `Both books define the diaphragm as the dome-shaped muscle separating the thoracic and abdominal cavities.`
+    },
+    {
+        question: `The process by which oxygen is used and carbon dioxide is produced at the cellular level is called:`,
+        options: [
+            `Pulmonary ventilation`,
+            `External respiration`,
+            `Internal respiration`,
+            `Gas transport`
+        ],
+        correctAnswer: 2,
+        reasoning: `While not explicitly defined in the excerpts, "internal respiration" is the standard term for cellular gas exchange, contrasting with "external respiration" in the lungs.`
+    },
+    {
+        question: `Which component of the blood is primarily responsible for carrying oxygen?`,
+        options: [
+            `Plasma`,
+            `Platelets`,
+            `White blood cells`,
+            `Red blood cells (Erythrocytes)`
+        ],
+        correctAnswer: 3,
+        reasoning: `The texts consistently describe haemoglobin within red blood cells as the carrier for oxygen.`
+    },
+    {
+        question: `The walls of the alveoli contain which proteins to allow for elasticity?`,
+        options: [
+            `Collagen only`,
+            `Elastin only`,
+            `Both collagen and elastin`,
+            `Keratin`
+        ],
+        correctAnswer: 2,
+        reasoning: `The Federal book states collagen and elastin proteins are present in alveolar walls, allowing expansion and recoil.`
+    },
+    {
+        question: `The common name for the "voice box" is the:`,
+        options: [
+            `Pharynx`,
+            `Larynx`,
+            `Trachea`,
+            `Glottis`
+        ],
+        correctAnswer: 1,
+        reasoning: `The KPK textbook states the larynx is commonly called the voice box.`
+    },
+    {
+        question: `In the context of gas transport, what does the Haldane effect describe?`,
+        options: [
+            `The influence of CO₂ on oxygen binding`,
+            `The influence of oxygen on CO₂ binding`,
+            `The chloride shift mechanism`,
+            `The role of surfactant`
+        ],
+        correctAnswer: 1,
+        reasoning: `While not named in the excerpts, the Haldane effect is the standard concept describing how oxygenation of haemoglobin promotes CO₂ unloading, related to the described buffering by Hb.`
+    },
+    {
+        question: `Which part of the respiratory tract is shared with the digestive system?`,
+        options: [
+            `Nasal cavity`,
+            `Larynx`,
+            `Pharynx`,
+            `Trachea`
+        ],
+        correctAnswer: 2,
+        reasoning: `Both books describe the pharynx as a common passageway for both air and food.`
+    },
+    {
+        question: `The scientific term for the windpipe is the:`,
+        options: [
+            `Larynx`,
+            `Pharynx`,
+            `Trachea`,
+            `Bronchus`
+        ],
+        correctAnswer: 2,
+        reasoning: `The Federal book states the trachea is also called the windpipe.`
+    },
+    {
+        question: `The volume of air remaining in the lungs after a maximum forcible expiration is the:`,
+        options: [
+            `Expiratory Reserve Volume`,
+            `Tidal Volume`,
+            `Residual Volume`,
+            `Vital Capacity`
+        ],
+        correctAnswer: 2,
+        reasoning: `The KPK book defines Residual Volume as the air remaining after a forcible expiration.`
+    },
+    {
+        question: `Which of the following best describes the path of air from the environment to the alveoli?`,
+        options: [
+            `Nostrils → Pharynx → Larynx → Trachea → Bronchi → Bronchioles → Alveoli`,
+            `Mouth → Larynx → Pharynx → Trachea → Bronchioles → Bronchi → Alveoli`,
+            `Nostrils → Larynx → Pharynx → Trachea → Bronchi → Alveoli → Bronchioles`,
+            `Mouth → Pharynx → Trachea → Larynx → Bronchi → Bronchioles → Alveoli`
+        ],
+        correctAnswer: 0,
+        reasoning: `Tracing the path as described in both textbooks leads to sequence a.`
+    },
+    {
+        question: `What is the role of the pleural membranes?`,
+        options: [
+            `Gas exchange`,
+            `Sound production`,
+            `Reducing friction and creating a sealed space`,
+            `Warming inspired air`
+        ],
+        correctAnswer: 2,
+        reasoning: `The KPK book states the pleura protects the lungs, stops air leaks, and reduces friction.`
+    },
+    {
+        question: `A decrease in the oxygen-carrying capacity of blood, as described in the texts, can be caused by all EXCEPT:`,
+        options: [
+            `A rise in body temperature`,
+            `A drop in blood pH`,
+            `An increase in partial pressure of oxygen (PO₂)`,
+            `An increase in partial pressure of carbon dioxide (PCO₂)`
+        ],
+        correctAnswer: 2,
+        reasoning: `A "Science Titbit" in the Federal book lists factors like rise in temperature, drop in pH, and changes in PCO₂/PO₂ as sensitive, but an *increase* in PO₂ would increase, not decrease, O₂ carriage.`
+    },
+    {
+        question: `The characteristic "C" shape of tracheal cartilages is important because:`,
+        options: [
+            `It allows for maximum expansion during inspiration`,
+            `It provides a complete rigid ring for protection`,
+            `It allows the esophagus to expand into the space during swallowing`,
+            `It facilitates the production of sound`
+        ],
+        correctAnswer: 2,
+        reasoning: `The KPK book notes the rings are incomplete (open posteriorly), which allows the adjacent esophagus to expand during swallowing.`
+    },
+    {
+        question: `Which of the following statements about bronchioles is FALSE?`,
+        options: [
+            `Their walls contain smooth muscle`,
+            `They are lined with ciliated epithelium`,
+            `They are supported by C-shaped cartilages`,
+            `They can change diameter to regulate airflow`
+        ],
+        correctAnswer: 2,
+        reasoning: `Both books state bronchioles lack cartilaginous support.`
+    },
+    {
+        question: `The maximum amount of oxygen that can be carried by 100 ml of fully saturated arterial blood is approximately:`,
+        options: [
+            `5 ml`,
+            `15 ml`,
+            `20 ml`,
+            `50 ml`
+        ],
+        correctAnswer: 2,
+        reasoning: `A "Science Titbit" in the Federal book states the maximum capacity is 20 ml O₂ per 100 ml blood.`
+    },
+    {
+        question: `Which of the following is a symptom of carbon monoxide poisoning?`,
+        options: [
+            `Cyanosis (blue lips)`,
+            `Cherry-red lips`,
+            `Yellowing of the skin`,
+            `Increased urine output`
+        ],
+        correctAnswer: 1,
+        reasoning: `The Federal textbook lists "cherry-red lips" as a symptom of CO poisoning.`
+    },
+    {
+        question: `What is the primary trigger for the sneeze reflex?`,
+        options: [
+            `Irritation in the larynx`,
+            `Irritation in the nasal mucosa`,
+            `A drop in blood oxygen`,
+            `Spasm of the diaphragm`
+        ],
+        correctAnswer: 1,
+        reasoning: `The Federal book states sneezing is a reflexive response to irritating stimulus of the nasal mucosa.`
+    },
+    {
+        question: `In the blood, bicarbonate ions (HCO₃⁻) formed in red blood cells are exchanged for which ion from the plasma?`,
+        options: [
+            `Sodium ions (Na⁺)`,
+            `Potassium ions (K⁺)`,
+            `Chloride ions (Cl⁻)`,
+            `Calcium ions (Ca²⁺)`
+        ],
+        correctAnswer: 2,
+        reasoning: `Both books describe the chloride shift, where HCO₃⁻ leaves the RBC and Cl⁻ enters.`
+    },
+    {
+        question: `The point of bifurcation of the trachea is at the level of which vertebral landmark?`,
+        options: [
+            `Cricoid cartilage (C6)`,
+            `Carina (around T4/T5)`,
+            `Suprasternal notch`,
+            `Xiphoid process`
+        ],
+        correctAnswer: 1,
+        reasoning: `The KPK book states the trachea extends to the carina. Standard anatomical knowledge places this at the sternal angle, level with T4/T5 vertebrae.`
+    },
+    {
+        question: `What is the primary advantage of a large respiratory surface area?`,
+        options: [
+            `It allows for faster diffusion rates`,
+            `It permits exchange of sufficient gas volumes to meet metabolic needs`,
+            `It helps in warming the air`,
+            `It provides space for blood storage`
+        ],
+        correctAnswer: 1,
+        reasoning: `Both books state a large surface area allows sufficient gas exchange according to the organism's needs.`
+    },
+    {
+        question: `Which of the following structures is most anterior (front) in the neck?`,
+        options: [
+            `Esophagus`,
+            `Trachea`,
+            `Vertebral column`,
+            `Carotid arteries`
+        ],
+        correctAnswer: 1,
+        reasoning: `Based on standard anatomy and the description of the trachea's position, it is anterior to the esophagus.`
+    },
+    {
+        question: `The chemical equation: Hb₄O₂ + H⁺ → HHb + 4O₂, illustrates which important physiological concept?`,
+        options: [
+            `The chloride shift`,
+            `The Bohr effect`,
+            `The formation of carbaminohaemoglobin`,
+            `The action of carbonic anhydrase`
+        ],
+        correctAnswer: 1,
+        reasoning: `This equation from the Federal book shows how hydrogen ions (increased acidity) cause oxyhaemoglobin to release oxygen, which is the essence of the Bohr effect.`
+    },
+    {
+        question: `The internal nares connect the nasal cavity to the:`,
+        options: [
+            `External nostrils`,
+            `Oral cavity`,
+            `Pharynx`,
+            `Larynx`
+        ],
+        correctAnswer: 2,
+        reasoning: `The nasopharynx is continuous with the nasal cavity via the internal nares, as per the described anatomy.`
+    },
+    {
+        question: `Which element in Period 3 has an atomic radius determined by Van der Waals forces rather than covalent bonding?`,
+        options: [
+            `Sodium`,
+            `Chlorine`,
+            `Argon`,
+            `Silicon`
+        ],
+        correctAnswer: 2,
+        reasoning: `Argon is a noble gas and does not form covalent bonds; its atomic radius is given as the Van der Waals radius, which is larger than covalent radii.`
+    },
+    {
+        question: `What trend is observed for first ionization energy across Period 3 from Na to Cl?`,
+        options: [
+            `Decreases uniformly`,
+            `Increases uniformly`,
+            `Remains constant`,
+            `Increases then decreases`
+        ],
+        correctAnswer: 1,
+        reasoning: `Ionization energy generally increases from left to right in a period due to decreasing atomic size and increasing effective nuclear charge.`
+    },
+    {
+        question: `Which Period 3 element does not react with water under normal conditions?`,
+        options: [
+            `Sodium`,
+            `Magnesium`,
+            `Aluminium`,
+            `Argon`
+        ],
+        correctAnswer: 3,
+        reasoning: `Argon is a noble gas and is inert, showing no reaction with water.`
+    },
+    {
+        question: `What product is formed when magnesium reacts with steam?`,
+        options: [
+            `Mg(OH)₂`,
+            `MgO`,
+            `MgH₂`,
+            `MgCl₂`
+        ],
+        correctAnswer: 1,
+        reasoning: `Magnesium burns in steam to produce magnesium oxide (MgO) and hydrogen gas.`
+    },
+    {
+        question: `Which oxide in Period 3 is amphoteric?`,
+        options: [
+            `Na₂O`,
+            `MgO`,
+            `Al₂O₃`,
+            `SiO₂`
+        ],
+        correctAnswer: 2,
+        reasoning: `Aluminium oxide (Al₂O₃) reacts with both acids and bases, showing amphoteric behavior.`
+    },
+    {
+        question: `What is the oxidation state of oxygen in sodium superoxide (NaO₂)?`,
+        options: [
+            `-2`,
+            `-1`,
+            `-½`,
+            `0`
+        ],
+        correctAnswer: 2,
+        reasoning: `In sodium superoxide, oxygen has an oxidation state of -½.`
+    },
+    {
+        question: `Which element in Period 3 forms an oxide that does not react with water due to strong covalent bonds in a 3D lattice?`,
+        options: [
+            `Aluminium`,
+            `Silicon`,
+            `Phosphorus`,
+            `Sulphur`
+        ],
+        correctAnswer: 1,
+        reasoning: `Silicon dioxide (SiO₂) has strong covalent bonds in a giant structure, preventing reaction with water.`
+    },
+    {
+        question: `Which Group IA element has the lowest density at 20°C?`,
+        options: [
+            `Lithium`,
+            `Sodium`,
+            `Potassium`,
+            `Rubidium`
+        ],
+        correctAnswer: 0,
+        reasoning: `Lithium has a density of 0.53 g/cm³, the lowest among the listed Group IA elements.`
+    },
+    {
+        question: `How does atomic radius generally change when moving down Group IA?`,
+        options: [
+            `Decreases`,
+            `Increases`,
+            `Remains same`,
+            `Fluctuates`
+        ],
+        correctAnswer: 1,
+        reasoning: `Atomic size increases down a group due to the addition of electron shells.`
+    },
+    {
+        question: `Which alkali metal reacts most vigorously with water?`,
+        options: [
+            `Lithium`,
+            `Sodium`,
+            `Potassium`,
+            `Cesium`
+        ],
+        correctAnswer: 3,
+        reasoning: `Reactivity with water increases down Group IA; cesium reacts most violently.`
+    },
+    {
+        question: `What is the primary product when sodium peroxide reacts with water?`,
+        options: [
+            `NaOH and O₂`,
+            `NaOH and H₂O₂`,
+            `Na₂O and H₂`,
+            `Na and OH⁻`
+        ],
+        correctAnswer: 1,
+        reasoning: `Sodium peroxide (Na₂O₂) reacts with water to form sodium hydroxide and hydrogen peroxide.`
+    },
+    {
+        question: `Which Group IA nitrate decomposes to produce nitrogen dioxide upon heating?`,
+        options: [
+            `Sodium nitrate`,
+            `Potassium nitrate`,
+            `Lithium nitrate`,
+            `Rubidium nitrate`
+        ],
+        correctAnswer: 2,
+        reasoning: `Only lithium nitrate decomposes similarly to Group IIA nitrates, yielding Li₂O, NO₂, and O₂.`
+    },
+    {
+        question: `Which alkaline earth metal does not react with water even at red heat?`,
+        options: [
+            `Beryllium`,
+            `Magnesium`,
+            `Calcium`,
+            `Strontium`
+        ],
+        correctAnswer: 0,
+        reasoning: `Beryllium does not react with water due to its low electropositive character and protective oxide layer.`
+    },
+    {
+        question: `What is formed when barium reacts with oxygen under heating?`,
+        options: [
+            `BaO`,
+            `BaO₂`,
+            `Ba₃N₂`,
+            `Ba(OH)₂`
+        ],
+        correctAnswer: 1,
+        reasoning: `Barium forms barium peroxide (BaO₂) when heated with oxygen.`
+    },
+    {
+        question: `Which Group IIA element forms a covalent and volatile nitride?`,
+        options: [
+            `Beryllium`,
+            `Magnesium`,
+            `Calcium`,
+            `Strontium`
+        ],
+        correctAnswer: 0,
+        reasoning: `Beryllium nitride (Be₃N₂) is covalent and volatile, unlike the ionic nitrides of other Group IIA elements.`
+    },
+    {
+        question: `What type of oxide is carbon monoxide considered?`,
+        options: [
+            `Acidic`,
+            `Basic`,
+            `Amphoteric`,
+            `Neutral`
+        ],
+        correctAnswer: 3,
+        reasoning: `Carbon monoxide is treated as a neutral oxide, though it shows slight acidic behavior.`
+    },
+    {
+        question: `Which Period 3 element produces a pale green solution when dissolved in water?`,
+        options: [
+            `Phosphorus`,
+            `Sulphur`,
+            `Chlorine`,
+            `Argon`
+        ],
+        correctAnswer: 2,
+        reasoning: `Chlorine dissolves in water to form a pale green solution due to the formation of HCl and HOCl.`
+    },
+    {
+        question: `What is the electronic configuration of magnesium?`,
+        options: [
+            `[Ne]3s¹`,
+            `[Ne]3s²`,
+            `[Ne]3s²3p¹`,
+            `[Ne]3s²3p²`
+        ],
+        correctAnswer: 1,
+        reasoning: `Magnesium (atomic number 12) has the electronic configuration [Ne]3s².`
+    },
+    {
+        question: `Which factor primarily causes the decrease in atomic size across Period 3?`,
+        options: [
+            `Increase in number of shells`,
+            `Decrease in nuclear charge`,
+            `Increase in effective nuclear charge`,
+            `Increase in shielding effect`
+        ],
+        correctAnswer: 2,
+        reasoning: `Effective nuclear charge increases across the period, pulling electrons closer and reducing atomic size.`
+    },
+    {
+        question: `What is the product when aluminium reacts with steam?`,
+        options: [
+            `Al(OH)₃`,
+            `Al₂O₃`,
+            `AlH₃`,
+            `AlCl₃`
+        ],
+        correctAnswer: 1,
+        reasoning: `Aluminium powder heated in steam produces aluminium oxide (Al₂O₃) and hydrogen.`
+    },
+    {
+        question: `Which Period 3 oxide reacts with water to form sulphuric acid?`,
+        options: [
+            `SO₂`,
+            `SO₃`,
+            `P₄O₁₀`,
+            `Cl₂O`
+        ],
+        correctAnswer: 1,
+        reasoning: `Sulphur trioxide (SO₃) reacts violently with water to form sulphuric acid (H₂SO₄).`
+    },
+    {
+        question: `Which Group IA element forms a normal oxide that reacts with dilute sulphuric acid to form a salt and water?`,
+        options: [
+            `Lithium`,
+            `Sodium`,
+            `Potassium`,
+            `All of the above`
+        ],
+        correctAnswer: 3,
+        reasoning: `Normal oxides of Group IA (e.g., Li₂O, Na₂O) react with acids to form salts and water.`
+    },
+    {
+        question: `What is the trend in decomposition temperature of Group IA carbonates down the group?`,
+        options: [
+            `Decreases`,
+            `Increases`,
+            `Remains constant`,
+            `Varies irregularly`
+        ],
+        correctAnswer: 1,
+        reasoning: `Decomposition temperatures of Group IA carbonates increase down the group, making them more stable to heat.`
+    },
+    {
+        question: `Which element in Period 3 has the highest first ionization energy?`,
+        options: [
+            `Sodium`,
+            `Magnesium`,
+            `Chlorine`,
+            `Argon`
+        ],
+        correctAnswer: 3,
+        reasoning: `Ionization energy increases across Period 3; argon, being a noble gas, has the highest ionization energy.`
+    },
+    {
+        question: `What is the nature of silicon dioxide (SiO₂) in terms of acid-base behavior?`,
+        options: [
+            `Basic`,
+            `Acidic`,
+            `Amphoteric`,
+            `Neutral`
+        ],
+        correctAnswer: 1,
+        reasoning: `Silicon dioxide is an acidic oxide, reacting with bases to form salts.`
+    },
+    {
+        question: `Which Period 3 element burns in chlorine to form a colourless fuming liquid?`,
+        options: [
+            `Silicon`,
+            `Phosphorus`,
+            `Sulphur`,
+            `Aluminium`
+        ],
+        correctAnswer: 1,
+        reasoning: `White phosphorus burns in chlorine to form phosphorus trichloride (PCl₃), a colourless fuming liquid.`
+    },
+    {
+        question: `What is the oxidation state of oxygen in sodium peroxide?`,
+        options: [
+            `-2`,
+            `-1`,
+            `0`,
+            `+1`
+        ],
+        correctAnswer: 1,
+        reasoning: `In sodium peroxide (Na₂O₂), oxygen has an oxidation state of -1.`
+    },
+    {
+        question: `Which Group IIA element does not form a peroxide when heated with oxygen?`,
+        options: [
+            `Strontium`,
+            `Barium`,
+            `Magnesium`,
+            `Calcium`
+        ],
+        correctAnswer: 2,
+        reasoning: `Magnesium does not form a peroxide; only strontium and barium form peroxides under specific conditions.`
+    },
+    {
+        question: `What is the primary reason for the increase in atomic size down a group?`,
+        options: [
+            `Increase in effective nuclear charge`,
+            `Addition of electron shells`,
+            `Decrease in shielding`,
+            `Increase in electron-electron repulsion`
+        ],
+        correctAnswer: 1,
+        reasoning: `Adding new electron shells down a group increases atomic size, overriding the effect of increased nuclear charge.`
+    },
+    {
+        question: `Which Period 3 element produces an amphoteric hydroxide?`,
+        options: [
+            `Sodium`,
+            `Magnesium`,
+            `Aluminium`,
+            `Silicon`
+        ],
+        correctAnswer: 2,
+        reasoning: `Aluminium hydroxide is amphoteric, reacting with both acids and bases.`
+    },
+    {
+        question: `What is the product when chlorine reacts with sodium hydroxide?`,
+        options: [
+            `NaCl and H₂O`,
+            `NaClO and H₂O`,
+            `NaClO₃ and H₂O`,
+            `NaClO₄ and H₂O`
+        ],
+        correctAnswer: 1,
+        reasoning: `Dichlorine monoxide (Cl₂O) reacts with NaOH to form sodium hypochlorite (NaClO) and water.`
+    },
+    {
+        question: `Which alkali metal has the electronic configuration [Ar]4s¹?`,
+        options: [
+            `Lithium`,
+            `Sodium`,
+            `Potassium`,
+            `Rubidium`
+        ],
+        correctAnswer: 2,
+        reasoning: `Potassium (atomic number 19) has the electronic configuration [Ar]4s¹.`
+    },
+    {
+        question: `What is the trend in reactivity of Group IA elements with chlorine?`,
+        options: [
+            `Decreases down the group`,
+            `Increases down the group`,
+            `Remains constant`,
+            `Increases then decreases`
+        ],
+        correctAnswer: 1,
+        reasoning: `Reactivity with halogens increases down Group IA due to increasing electropositive character.`
+    },
+    {
+        question: `Which Period 3 element forms a protective oxide layer that inhibits further reaction?`,
+        options: [
+            `Sodium`,
+            `Magnesium`,
+            `Aluminium`,
+            `Silicon`
+        ],
+        correctAnswer: 2,
+        reasoning: `Aluminium forms a strong oxide layer (Al₂O₃) that protects it from further oxidation.`
+    },
+    {
+        question: `What is the atomic radius of chlorine based on covalent radius measurement?`,
+        options: [
+            `99 pm`,
+            `104 pm`,
+            `114 pm`,
+            `188 pm`
+        ],
+        correctAnswer: 0,
+        reasoning: `The covalent radius of chlorine is half the internuclear distance in Cl₂, which is 198 pm, giving 99 pm.`
+    },
+    {
+        question: `Which Group IA carbonate decomposes similarly to Group IIA carbonates upon heating?`,
+        options: [
+            `Sodium carbonate`,
+            `Potassium carbonate`,
+            `Lithium carbonate`,
+            `Rubidium carbonate`
+        ],
+        correctAnswer: 2,
+        reasoning: `Lithium carbonate decomposes like Group IIA carbonates to form Li₂O and CO₂.`
+    },
+    {
+        question: `What is the product when silicon reacts with chlorine?`,
+        options: [
+            `SiCl₂`,
+            `SiCl₃`,
+            `SiCl₄`,
+            `Si₂Cl₆`
+        ],
+        correctAnswer: 2,
+        reasoning: `Silicon reacts with chlorine to form silicon tetrachloride (SiCl₄), a colourless liquid.`
+    },
+    {
+        question: `Which Period 3 element burns in air to form a mixture of trioxide and pentoxide?`,
+        options: [
+            `Phosphorus`,
+            `Sulphur`,
+            `Silicon`,
+            `Aluminium`
+        ],
+        correctAnswer: 0,
+        reasoning: `White phosphorus burns in air to form a mixture of phosphorus trioxide (P₄O₆) and phosphorus pentoxide (P₄O₁₀).`
+    },
+    {
+        question: `What is the nature of the oxide formed by sulphur in Period 3?`,
+        options: [
+            `Basic`,
+            `Amphoteric`,
+            `Acidic`,
+            `Neutral`
+        ],
+        correctAnswer: 2,
+        reasoning: `Sulphur oxides (SO₂ and SO₃) are acidic, reacting with water to form acids.`
+    },
+    {
+        question: `Which Group IIA element requires high pressure to form a peroxide with oxygen?`,
+        options: [
+            `Beryllium`,
+            `Magnesium`,
+            `Strontium`,
+            `Barium`
+        ],
+        correctAnswer: 2,
+        reasoning: `Strontium forms strontium peroxide (SrO₂) when heated with oxygen under high pressure.`
+    },
+    {
+        question: `What is the primary reason iodine is essential in the human diet?`,
+        options: [
+            `Bone formation`,
+            `Thyroid hormone synthesis`,
+            `Blood clotting`,
+            `Muscle contraction`
+        ],
+        correctAnswer: 1,
+        reasoning: `Iodine is needed to produce thyroid hormone, which regulates metabolism and other bodily functions.`
+    },
+    {
+        question: `Which Period 3 element does not form an oxide?`,
+        options: [
+            `Sodium`,
+            `Magnesium`,
+            `Chlorine`,
+            `Argon`
+        ],
+        correctAnswer: 3,
+        reasoning: `Argon is a noble gas and does not form oxides under normal conditions.`
+    },
+    {
+        question: `What is the trend in melting points of Group IA elements?`,
+        options: [
+            `Increases down the group`,
+            `Decreases down the group`,
+            `Remains constant`,
+            `Varies irregularly`
+        ],
+        correctAnswer: 1,
+        reasoning: `Melting points generally decrease down Group IA due to increasing atomic size and weaker metallic bonding.`
+    },
+    {
+        question: `Which Period 3 element has the smallest atomic radius?`,
+        options: [
+            `Sodium`,
+            `Magnesium`,
+            `Chlorine`,
+            `Argon`
+        ],
+        correctAnswer: 2,
+        reasoning: `Atomic radius decreases across Period 3; chlorine has the smallest covalent radius (99 pm) before argon.`
+    },
+    {
+        question: `What is the oxidation state of oxygen in most metallic oxides of Period 3?`,
+        options: [
+            `-2`,
+            `-1`,
+            `0`,
+            `+2`
+        ],
+        correctAnswer: 0,
+        reasoning: `In normal oxides like Na₂O and MgO, oxygen has an oxidation state of -2.`
+    },
+    {
+        question: `In a sinusoidal alternating current, what is the net charge transferred over a full period?`,
+        options: [
+            `Positive`,
+            `Negative`,
+            `Zero`,
+            `Depends on frequency`
+        ],
+        correctAnswer: 2,
+        reasoning: `Since alternating current changes direction symmetrically, the net charge flow over a complete cycle is zero.`
+    },
+    {
+        question: `A conductor carries a steady current. If the cross-sectional area is doubled while keeping the current constant, what happens to the drift velocity of electrons?`,
+        options: [
+            `It doubles.`,
+            `It halves.`,
+            `It remains the same.`,
+            `It becomes zero.`
+        ],
+        correctAnswer: 1,
+        reasoning: `Drift velocity is inversely proportional to cross-sectional area for a constant current, so doubling area halves drift velocity.`
+    },
+    {
+        question: `For a conductor in electrostatic equilibrium, which statement is always true?`,
+        options: [
+            `The electric field inside is zero.`,
+            `The charge resides only on the surface.`,
+            `The potential is constant throughout.`,
+            `All of the above.`
+        ],
+        correctAnswer: 3,
+        reasoning: `In electrostatic equilibrium, conductors have no electric field inside, charge distributes on the surface, and the potential is constant.`
+    },
+    {
+        question: `When a charged conductor is connected to ground, what happens to its charge?`,
+        options: [
+            `It becomes zero.`,
+            `It becomes negative.`,
+            `It becomes positive.`,
+            `It depends on the initial charge.`
+        ],
+        correctAnswer: 0,
+        reasoning: `Grounding allows excess charge to flow to earth until the conductor reaches zero potential, resulting in zero net charge.`
+    },
+    {
+        question: `Two charges exert a force F on each other. If the distance between them is tripled, what is the new force?`,
+        options: [
+            `F/3`,
+            `F/9`,
+            `3F`,
+            `9F`
+        ],
+        correctAnswer: 1,
+        reasoning: `Coulomb's law states that force is inversely proportional to the square of distance, so tripling the distance reduces force by a factor of nine.`
+    },
+    {
+        question: `Three equal positive charges are placed at the vertices of an equilateral triangle. What is the direction of the net force on any one charge?`,
+        options: [
+            `Towards the center`,
+            `Away from the center`,
+            `Along the side`,
+            `Zero`
+        ],
+        correctAnswer: 1,
+        reasoning: `Due to symmetry, the repulsive forces from the other two charges combine to produce a net force away from the center of the triangle.`
+    },
+    {
+        question: `How does the presence of a dielectric material affect the Coulomb force between two charges?`,
+        options: [
+            `Increases the force`,
+            `Decreases the force`,
+            `No effect`,
+            `Makes the force zero`
+        ],
+        correctAnswer: 1,
+        reasoning: `Dielectric materials reduce the electric field between charges, thus decreasing the Coulomb force.`
+    },
+    {
+        question: `In a medium with dielectric constant K, the force between two charges is F. What would be the force in vacuum?`,
+        options: [
+            `F/K`,
+            `KF`,
+            `F`,
+            `Zero`
+        ],
+        correctAnswer: 1,
+        reasoning: `The force in vacuum is greater by a factor of K, since dielectric constant reduces force in medium.`
+    },
+    {
+        question: `What is the direction of the electric field due to a positive point charge?`,
+        options: [
+            `Towards the charge`,
+            `Away from the charge`,
+            `Circular`,
+            `Radial inward`
+        ],
+        correctAnswer: 1,
+        reasoning: `A positive charge repels a positive test charge, so the electric field points away from it.`
+    },
+    {
+        question: `For two equal and opposite charges, at the midpoint along the line joining them, what is the direction of the electric field?`,
+        options: [
+            `Towards the positive charge`,
+            `Towards the negative charge`,
+            `Perpendicular to the line`,
+            `Zero`
+        ],
+        correctAnswer: 1,
+        reasoning: `At the midpoint, the electric fields due to both charges add up towards the negative charge, since positive charge field points away and negative charge field points towards it.`
+    },
+    {
+        question: `What is the electric field intensity just outside a charged conducting sphere?`,
+        options: [
+            `Inversely proportional to the radius`,
+            `Directly proportional to the radius`,
+            `Inversely proportional to the square of the radius`,
+            `Constant`
+        ],
+        correctAnswer: 2,
+        reasoning: `For a conducting sphere, the electric field just outside is proportional to the surface charge density, which is inversely proportional to the square of the radius.`
+    },
+    {
+        question: `In a region with parallel and equally spaced electric field lines, what is the nature of the electric field?`,
+        options: [
+            `Zero`,
+            `Uniform`,
+            `Non-uniform`,
+            `Radial`
+        ],
+        correctAnswer: 1,
+        reasoning: `Parallel and equally spaced field lines indicate a constant electric field in magnitude and direction, hence uniform.`
+    },
+    {
+        question: `Which of the following is not a property of electric field lines in electrostatics?`,
+        options: [
+            `They start from positive charges and end on negative charges.`,
+            `They never cross each other.`,
+            `They form closed loops.`,
+            `Their density indicates field strength.`
+        ],
+        correctAnswer: 2,
+        reasoning: `In electrostatics, electric field lines do not form closed loops; they start and end on charges. Closed loops occur in induced electric fields from changing magnetic fields.`
+    },
+    {
+        question: `For two identical positive charges, where is the electric field zero along the line joining them?`,
+        options: [
+            `At the midpoint`,
+            `Closer to one charge`,
+            `At infinity`,
+            `Nowhere`
+        ],
+        correctAnswer: 0,
+        reasoning: `At the midpoint, the electric fields from both charges are equal and opposite, so they cancel.`
+    },
+    {
+        question: `For two unlike charges with unequal magnitudes, where is the electric field zero?`,
+        options: [
+            `Between the charges`,
+            `Outside the charges on the side of the larger charge`,
+            `Outside the charges on the side of the smaller charge`,
+            `At infinity`
+        ],
+        correctAnswer: 2,
+        reasoning: `The zero field point is outside the charges on the side of the smaller charge, where the fields due to both charges are opposite and can cancel.`
+    },
+    {
+        question: `For a dipole, where is the electric potential zero on the axial line?`,
+        options: [
+            `At the midpoint`,
+            `At infinity`,
+            `At the charges`,
+            `Nowhere`
+        ],
+        correctAnswer: 1,
+        reasoning: `On the axial line of a dipole, the potential is zero only at infinity, since at finite points, potential is non-zero due to the dipole moment.`
+    },
+    {
+        question: `For two identical positive charges, where is the electric potential zero?`,
+        options: [
+            `At the midpoint`,
+            `At infinity`,
+            `At the charges`,
+            `Nowhere`
+        ],
+        correctAnswer: 1,
+        reasoning: `Electric potential due to point charges is zero at infinity, and for positive charges, potential is positive elsewhere.`
+    },
+    {
+        question: `What does electric flux density represent?`,
+        options: [
+            `Charge per unit area`,
+            `Electric field intensity`,
+            `Potential gradient`,
+            `Energy per unit volume`
+        ],
+        correctAnswer: 0,
+        reasoning: `Electric flux density, or displacement field, is related to free charge per unit area, especially in dielectrics.`
+    },
+    {
+        question: `In a region with uniform electric flux density, what is the free charge density?`,
+        options: [
+            `Zero`,
+            `Constant`,
+            `Varying`,
+            `Infinite`
+        ],
+        correctAnswer: 0,
+        reasoning: `Uniform electric flux density implies no net flux variation, so from Gauss's law, the free charge density is zero.`
+    },
+    {
+        question: `What does Gauss' law relate?`,
+        options: [
+            `Electric flux and charge enclosed`,
+            `Electric field and potential`,
+            `Current and charge`,
+            `Force and distance`
+        ],
+        correctAnswer: 0,
+        reasoning: `Gauss' law states that the net electric flux through a closed surface is proportional to the charge enclosed.`
+    },
+    {
+        question: `Which surface is most suitable for applying Gauss' law to a point charge?`,
+        options: [
+            `Cube`,
+            `Sphere`,
+            `Cylinder`,
+            `Any closed surface`
+        ],
+        correctAnswer: 1,
+        reasoning: `A spherical surface centered on the point charge exploits symmetry, making the electric field constant over the surface.`
+    },
+    {
+        question: `Which of the following is typically derived using Gauss' law?`,
+        options: [
+            `Electric field of a point charge`,
+            `Electric field of a dipole`,
+            `Electric field of a toroid`,
+            `Electric field of a finite wire`
+        ],
+        correctAnswer: 0,
+        reasoning: `Gauss' law is used for symmetric charge distributions like point charges, infinite lines, and spheres, but not for dipoles or finite wires without symmetry.`
+    },
+    {
+        question: `What is the electric field due to an infinite charged plane from Gauss' law?`,
+        options: [
+            `Constant and perpendicular to the plane`,
+            `Varying with distance`,
+            `Zero inside`,
+            `Radial`
+        ],
+        correctAnswer: 0,
+        reasoning: `Gauss' law applied to an infinite plane shows that the electric field is constant in magnitude and perpendicular to the plane.`
+    },
+    {
+        question: `What is the electric potential due to a positive point charge?`,
+        options: [
+            `Positive and decreasing with distance`,
+            `Negative and increasing with distance`,
+            `Constant`,
+            `Zero`
+        ],
+        correctAnswer: 0,
+        reasoning: `For a positive charge, potential is positive and decreases inversely with distance from the charge.`
+    },
+    {
+        question: `If the electric potential is zero at a point, what can be said about the electric field?`,
+        options: [
+            `It must be zero`,
+            `It must be non-zero`,
+            `It cannot be determined`,
+            `It is infinite`
+        ],
+        correctAnswer: 2,
+        reasoning: `Zero potential does not imply zero field; for example, at dipole midpoint, potential is zero but field is non-zero.`
+    },
+    {
+        question: `If the electric potential is constant in a region, what is the electric field?`,
+        options: [
+            `Constant`,
+            `Zero`,
+            `Non-zero`,
+            `Varying`
+        ],
+        correctAnswer: 1,
+        reasoning: `Constant potential means no potential gradient, so electric field is zero.`
+    },
+    {
+        question: `If potential varies linearly with distance, what is the electric field?`,
+        options: [
+            `Constant`,
+            `Zero`,
+            `Linear`,
+            `Inverse`
+        ],
+        correctAnswer: 0,
+        reasoning: `The gradient of a linear function is constant, so electric field is constant.`
+    },
+    {
+        question: `What is an electron volt?`,
+        options: [
+            `The energy gained by an electron moving through 1 volt`,
+            `The charge of an electron`,
+            `The potential of an electron`,
+            `The force on an electron`
+        ],
+        correctAnswer: 0,
+        reasoning: `An electron volt is defined as the energy change when an electron moves through a potential difference of one volt.`
+    },
+    {
+        question: `How many joules are in one electron volt?`,
+        options: [
+            `1.6 x 10^-19 J`,
+            `3.6 x 10^5 J`,
+            `1 J`,
+            `10^7 J`
+        ],
+        correctAnswer: 0,
+        reasoning: `Since the charge of an electron is 1.6 x 10^-19 C, 1 eV = 1.6 x 10^-19 J.`
+    },
+    {
+        question: `What happens to the electric potential energy when two like charges are brought closer?`,
+        options: [
+            `Increases`,
+            `Decreases`,
+            `Remains same`,
+            `Becomes zero`
+        ],
+        correctAnswer: 0,
+        reasoning: `For like charges, potential energy is positive and increases as separation decreases because work is done against repulsion.`
+    },
+    {
+        question: `What happens to the electric potential energy when two opposite charges are brought closer?`,
+        options: [
+            `Increases`,
+            `Decreases`,
+            `Remains same`,
+            `Becomes zero`
+        ],
+        correctAnswer: 1,
+        reasoning: `For opposite charges, potential energy is negative and becomes more negative as separation decreases, meaning it decreases.`
+    },
+    {
+        question: `During charging of a capacitor, what happens to the current in the circuit?`,
+        options: [
+            `Increases exponentially`,
+            `Decreases exponentially`,
+            `Constant`,
+            `Zero`
+        ],
+        correctAnswer: 1,
+        reasoning: `As the capacitor charges, the current decreases exponentially because the potential difference across the capacitor increases.`
+    },
+    {
+        question: `During discharging of a capacitor, what happens to the voltage across it?`,
+        options: [
+            `Increases exponentially`,
+            `Decreases exponentially`,
+            `Constant`,
+            `Zero`
+        ],
+        correctAnswer: 1,
+        reasoning: `During discharging, the voltage across the capacitor decreases exponentially as charge flows out.`
+    },
+    {
+        question: `What is the time constant for RC circuits?`,
+        options: [
+            `The time to charge fully`,
+            `The time to discharge fully`,
+            `The time to reach 63% of final charge`,
+            `The time to reach 50% of final charge`
+        ],
+        correctAnswer: 2,
+        reasoning: `The time constant τ = RC is the time to charge to 63% of the maximum charge during charging, or discharge to 37% during discharging.`
+    },
+    {
+        question: `Can the electric field be zero at a point where the potential is non-zero?`,
+        options: [
+            `Yes`,
+            `No`,
+            `Always`,
+            `Never`
+        ],
+        correctAnswer: 0,
+        reasoning: `Yes, for example, inside a charged conductor, the field is zero but potential is constant and non-zero.`
+    },
+    {
+        question: `What is the kinetic energy of an electron accelerated from rest through 50 V?`,
+        options: [
+            `50 eV`,
+            `50 J`,
+            `50 C`,
+            `50 N`
+        ],
+        correctAnswer: 0,
+        reasoning: `The kinetic energy gained is equal to the work done, which is 50 eV for an electron.`
+    },
+    {
+        question: `The series of lectures on quantum mechanics, along with the accompanying demonstrations, ________ been rescheduled due to unforeseen circumstances.`,
+        options: [
+            `are`,
+            `have`,
+            `has`,
+            `is`
+        ],
+        correctAnswer: 2,
+        reasoning: `The subject is "series," which is singular, and the intervening phrase "of lectures on quantum mechanics" does not change the subject. "Along with the accompanying demonstrations" is a prepositional phrase and does not affect subject-verb agreement. Therefore, the singular verb "has" is correct.`
+    },
+    {
+        question: `Either the principal or the teachers ________ responsible for the decision.`,
+        options: [
+            `is`,
+            `am`,
+            `be`,
+            `are`
+        ],
+        correctAnswer: 3,
+        reasoning: `When subjects are joined by "either...or," the verb agrees with the subject closer to it. Here, "teachers" is plural and closer to the verb, so the plural verb "are" is correct.`
+    },
+    {
+        question: `None of the information presented ________ reliable, according to the review committee.`,
+        options: [
+            `seem`,
+            `seems`,
+            `are`,
+            `were`
+        ],
+        correctAnswer: 1,
+        reasoning: `"None" can be singular or plural, but when it refers to a mass noun like "information," which is uncountable, it takes a singular verb. "Information" is singular, so "seems" is correct.`
+    },
+    {
+        question: `The staff ________ in disagreement about the new policy; some support it while others oppose it vehemently.`,
+        options: [
+            `is`,
+            `was`,
+            `are`,
+            `were`
+        ],
+        correctAnswer: 2,
+        reasoning: `"Staff" is a collective noun that can be singular or plural. Here, since the sentence indicates individual members acting separately ("some support... others oppose"), a plural verb "are" is appropriate.`
+    },
+    {
+        question: `A number of applicants ________ already been interviewed for the position.`,
+        options: [
+            `has`,
+            `have`,
+            `is`,
+            `was`
+        ],
+        correctAnswer: 1,
+        reasoning: `"A number of" is plural and means "several," so it takes a plural verb. "Have" is the plural verb form.`
+    },
+    {
+        question: `"The Chronicles of Narnia" ________ a series of fantasy novels that has captivated readers for decades.`,
+        options: [
+            `are`,
+            `is`,
+            `were`,
+            `have been`
+        ],
+        correctAnswer: 1,
+        reasoning: `Titles of books, movies, or series are treated as singular entities, so a singular verb "is" is correct.`
+    },
+    {
+        question: `All of the cake ________ eaten, but all of the cookies ________ still on the plate.`,
+        options: [
+            `were, are`,
+            `was, is`,
+            `was, are`,
+            `were, is`
+        ],
+        correctAnswer: 2,
+        reasoning: `"All" can be singular or plural depending on the noun it refers to. "Cake" is singular, so "was" is correct. "Cookies" is plural, so "are" is correct.`
+    },
+    {
+        question: `Each of the students, including those from the exchange program, ________ required to submit a final project.`,
+        options: [
+            `are`,
+            `is`,
+            `were`,
+            `have been`
+        ],
+        correctAnswer: 1,
+        reasoning: `"Each" is an indefinite pronoun that is always singular. The intervening phrase "including those from the exchange program" does not change the subject, so the singular verb "is" is correct.`
+    },
+    {
+        question: `The majority of the population ________ in favor of the new law, but a significant minority ________ opposed.`,
+        options: [
+            `is, is`,
+            `are, are`,
+            `is, are`,
+            `are, is`
+        ],
+        correctAnswer: 2,
+        reasoning: `"Majority" can be singular or plural. Here, "population" is a collective noun treated as singular, so "is" is correct for the first blank. "Minority" referring to a group of people can take a plural verb when emphasizing individuals, so "are" is correct for the second blank.`
+    },
+    {
+        question: `Example: "The city should ban plastic bags. They pollute waterways and harm wildlife." What is the argument's conclusion?`,
+        options: [
+            `Plastic bags pollute waterways.`,
+            `The city should ban plastic bags.`,
+            `They harm wildlife.`,
+            `Plastic is a problem.`
+        ],
+        correctAnswer: 1,
+        reasoning: `The conclusion is the main claim or course of action being advocated, which is that the city should ban plastic bags.`
+    },
+    {
+        question: `Example: "We must lower the voting age. This will increase civic engagement among youth." What is the necessary assumption?`,
+        options: [
+            `Youth are not currently engaged.`,
+            `Lowering the voting age causes increased engagement.`,
+            `Civic engagement is important.`,
+            `The current voting age is too high.`
+        ],
+        correctAnswer: 1,
+        reasoning: `The argument assumes a causal link between lowering the age and increasing engagement. Without this, the reasoning fails.`
+    },
+    {
+        question: `Example: "All artists are creative. Maria is an artist." What is the implied conclusion?`,
+        options: [
+            `Maria is creative.`,
+            `All creative people are artists.`,
+            `Artists are talented.`,
+            `Maria is talented.`
+        ],
+        correctAnswer: 0,
+        reasoning: `From the premise "All artists are creative" and "Maria is an artist," the valid conclusion is that Maria is creative.`
+    },
+    {
+        question: `Example: "This drug is safe. It passed Phase 1 trials with no major side effects." What is the main premise?`,
+        options: [
+            `The drug is safe.`,
+            `It passed Phase 1 trials.`,
+            `There were no major side effects.`,
+            `Phase 1 trials ensure safety.`
+        ],
+        correctAnswer: 2,
+        reasoning: `The premise offered as direct support for the claim of safety is the fact that there were no major side effects in the trials.`
+    },
+    {
+        question: `Example: "Traffic congestion will worsen unless the new bridge is built. The bridge is not being built." What follows?`,
+        options: [
+            `Traffic will improve.`,
+            `Traffic congestion will worsen.`,
+            `A new plan is needed.`,
+            `The bridge is unnecessary.`
+        ],
+        correctAnswer: 1,
+        reasoning: `The structure is "Unless A, B." If A (bridge built) is false, then B (congestion worsens) must be true.`
+    },
+    {
+        question: `Example: "John got the highest score. Therefore, John is the best candidate for the scholarship." What is a hidden assumption?`,
+        options: [
+            `Tests are fair.`,
+            `The scholarship uses scores as the sole criterion.`,
+            `John studied hard.`,
+            `Other candidates scored poorly.`
+        ],
+        correctAnswer: 1,
+        reasoning: `The argument assumes that the highest score directly and exclusively determines who is the best candidate for the scholarship.`
+    },
+    {
+        question: `Example: "Every time I wear this tie, my team wins. So, this tie is lucky." What weakens this?`,
+        options: [
+            `The team often wins.`,
+            `The tie was a gift.`,
+            `The team loses when he doesn't wear it.`,
+            `Correlation does not imply causation.`
+        ],
+        correctAnswer: 3,
+        reasoning: `The argument confuses correlation with causation. Pointing out this logical flaw weakens the conclusion that the tie causes the wins.`
+    },
+    {
+        question: `Example: "If the server is down, the website crashes. The website is not crashed." What can be inferred?`,
+        options: [
+            `The server is down.`,
+            `The server is up.`,
+            `The website is slow.`,
+            `Nothing certain.`
+        ],
+        correctAnswer: 3,
+        reasoning: `This is denying the consequent without the contrapositive. From "If P then Q" and "Not Q," we cannot infer anything about P without the original statement being reversible, which it isn't.`
+    },
+    {
+        question: `Example: "Only employees with keycards can enter. Sam entered the room." What must be true?`,
+        options: [
+            `Sam has a keycard.`,
+            `The rule was broken.`,
+            `Sam is an employee.`,
+            `The room was unlocked.`
+        ],
+        correctAnswer: 0,
+        reasoning: `If entering the room logically requires having a keycard, and Sam entered, then Sam must have a keycard.`
+    }
+];
+
+// Constants
+const QUIZ_ACCESS_CODE = "Student-MDCAT-001";
+const DEV_ACCESS_CODE = "MedPlex-Dev-001";
+const ACADEMY_NAME = "MedPlex MDCAT Academy";
+const QUIZ_SUBJECT = "Syllabus ";
+const WEBSITE_LINK = "medplex";
+const WHATSAPP_CONTACT = "03000047325";
+const WHATSAPP_COMMUNITY = "https://chat.whatsapp.com/communitylink";
+const TIME_PER_MCQ = 60;
+const MARK_PER_MCQ = 1;
+const NEGATIVE_MARKING = 0;
+const ENABLE_RETAKE_FULL = false;
+const ENABLE_RETAKE_INCORRECT = false;
+
+// Update CSS variables with custom colors
+document.documentElement.style.setProperty('--primary-blue', '#1a56db');
+document.documentElement.style.setProperty('--secondary-blue', '#0ea5e9');
+document.documentElement.style.setProperty('--accent-green', '#10b981');
+document.documentElement.style.setProperty('--accent-orange', '#f59e0b');
+document.documentElement.style.setProperty('--accent-red', '#ef4444');
+document.documentElement.style.setProperty('--accent-purple', '#8b5cf6');
+
+// Reasoning button colors
+document.documentElement.style.setProperty('--reasoning-disabled', 'linear-gradient(135deg, #4f46e5, #7c3aed)');
+document.documentElement.style.setProperty('--reasoning-enabled', 'linear-gradient(135deg, #ef4444, #f87171)');
+
+// Global state variables
+let currentQuizId = 'MDCAT-001';
+let quizData = quizData_MDCAT_001;
+let currentQuestion = 0;
+let userAnswers = Array(quizData.length).fill(null);
+let timeLeft;
+let questionTimeLeft;
+let totalTimeInterval;
+let questionTimeInterval;
+let studentData = {};
+let studentAccessCode = "";
+
+// DOM elements
+const questionNavEl = document.getElementById('question-nav');
+const questionTextEl = document.getElementById('question-text');
+const optionsContainerEl = document.getElementById('options-container');
+const reasoningEl = document.getElementById('reasoning');
+const reasoningTextEl = document.getElementById('reasoning-text');
+const reasoningBtn = document.getElementById('reasoning-btn');
+const quizTitleEl = document.getElementById('quiz-title');
+const quizSubjectEl = document.getElementById('quiz-subject');
+const perMcqTimeEl = document.getElementById('per-mcq-time');
+const totalTimerEl = document.getElementById('timer');
+const questionTimerEl = document.getElementById('question-timer');
+const quizProgressEl = document.getElementById('quiz-progress');
+const studentInfoTable = document.getElementById('student-info-table');
+const quizResultsTable = document.getElementById('quiz-results-table');
+const allMcqsList = document.getElementById('all-mcqs-list');
+const devPasswordInput = document.getElementById('developerPassword');
+const devErrorBox = document.getElementById('dev-error-box');
+const quizAccessCodeInput = document.getElementById('quizAccessCode');
+const quizAccessErrorBox = document.getElementById('quiz-error-box');
+const toggleDevPasswordIcon = document.getElementById('toggleDeveloperPassword');
+const toggleQuizCodeIcon = document.getElementById('toggleQuizAccessCode');
+const websiteLinkEl = document.getElementById('website-link');
+const whatsappContactLinkEl = document.getElementById('whatsapp-contact-link');
+const whatsappCommunityLinkEl = document.getElementById('whatsapp-community-link');
+const quizNotificationEl = document.getElementById('quiz-notification');
+const notificationTitleEl = document.getElementById('notification-title');
+const notificationMessageEl = document.getElementById('notification-message');
+const notificationYesBtn = document.getElementById('notification-yes');
+const notificationNoBtn = document.getElementById('notification-no');
+const retakeFullBtn = document.getElementById('retake-full-btn');
+const retakeIncorrectBtn = document.getElementById('retake-incorrect-btn');
+const submissionMessageEl = document.getElementById('submission-message');
+const resultActionsEl = document.getElementById('result-actions');
+
+/**
+ * @description Sends data to the Google Apps Script endpoint.
+ * @param {object} data - The payload containing type ('registration' or 'quiz_result') and data.
+ */
+function sendDataToSheet(data) {
+    if (!SHEET_SCRIPT_URL || SHEET_SCRIPT_URL.includes('YOUR_DEPLOYED_WEB_APP_URL')) {
+        console.error('SHEET_SCRIPT_URL is not configured. Data not sent to Google Sheet.');
+        return Promise.resolve({ success: false, message: 'Script URL not configured.' });
+    }
+
+    return fetch(SHEET_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        cache: 'no-cache',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        return { success: true, message: 'Request sent to Google Script.' };
+    })
+    .catch(error => {
+        console.error('Sheet Data Send Error:', error);
+        return { success: false, message: 'Failed to send request to Google Script.' };
+    });
+}
+
+// Initialization
+document.addEventListener('DOMContentLoaded', () => {
+    const storedStudentData = localStorage.getItem('studentData');
+    if (storedStudentData) {
+        studentData = JSON.parse(storedStudentData);
+        document.getElementById('studentName').value = studentData['Student Name'] || '';
+        document.getElementById('fatherName').value = studentData['Father Name'] || '';
+        document.getElementById('email').value = studentData['Email'] || '';
+        document.getElementById('mobile').value = studentData['Mobile'] || '';
+        document.getElementById('city').value = studentData['City'] || '';
+    }
+    const storedCode = localStorage.getItem('studentAccessCode');
+    if (storedCode) {
+        studentAccessCode = storedCode;
+    }
+    
+    showPage('signin-page');
+    
+    if (toggleDevPasswordIcon) toggleDevPasswordIcon.addEventListener('click', () => togglePasswordVisibility('developerPassword', 'toggleDeveloperPassword'));
+    if (toggleQuizCodeIcon) toggleQuizCodeIcon.addEventListener('click', () => togglePasswordVisibility('quizAccessCode', 'toggleQuizAccessCode'));
+    
+    // Set retake buttons visibility
+    if (retakeFullBtn) {
+        retakeFullBtn.style.display = ENABLE_RETAKE_FULL ? 'flex' : 'none';
+    }
+    if (retakeIncorrectBtn) {
+        retakeIncorrectBtn.style.display = ENABLE_RETAKE_INCORRECT ? 'flex' : 'none';
+    }
+    
+    // Render any existing KaTeX equations
+    if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body);
+    }
+});
+
+function showQuizNotification(title, message, type = 'info') {
+    const allowedNotifications = ['Registration Successful', 'Access Granted', 
+                                 'Quiz Completed!', 'Quiz Reset', 'Registration Error', 'Submission Error', 'Registration Warning'];
+    
+    if (!allowedNotifications.includes(title)) {
+        return;
+    }
+    
+    notificationTitleEl.textContent = title;
+    notificationMessageEl.textContent = message;
+    
+    quizNotificationEl.classList.remove('warning', 'error');
+    
+    if (type === 'warning') {
+        quizNotificationEl.classList.add('warning');
+    } else if (type === 'error') {
+        quizNotificationEl.classList.add('error');
+    }
+    
+    quizNotificationEl.classList.add('show');
+    
+    setTimeout(() => {
+        if (quizNotificationEl.classList.contains('show')) {
+            hideQuizNotification();
+        }
+    }, 5000);
+}
+
+function hideQuizNotification() {
+    quizNotificationEl.classList.remove('show');
+}
+
+function showPage(pageId) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => page.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+    document.querySelectorAll('.error-box, .success-box').forEach(el => el.style.display = 'none');
+}
+
+function togglePasswordVisibility(inputID, iconID) {
+    const passwordInput = document.getElementById(inputID);
+    const toggleIcon = document.getElementById(iconID);
+    
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleIcon.classList.remove('fa-eye-slash');
+        toggleIcon.classList.add('fa-eye');
+    } else {
+        passwordInput.type = 'password';
+        toggleIcon.classList.remove('fa-eye');
+        toggleIcon.classList.add('fa-eye-slash');
+    }
+}
+
+function showQuizAccessForm() {
+    document.getElementById('quiz-access-form').style.display = 'flex';
+    document.getElementById('developer-access-form').style.display = 'none';
+}
+
+function showDeveloperAccessForm() {
+    document.getElementById('developer-access-form').style.display = 'flex';
+    document.getElementById('quiz-access-form').style.display = 'none';
+}
+
+function showRegistrationPage() {
+    showPage('registration-page');
+}
+
+// Registration Handler
+function generateAccessCode(studentName, fatherName) {
+    const studentInitials = studentName.split(' ').map(n => n[0]).join('').toUpperCase();
+    const fatherInitials = fatherName.split(' ').map(n => n[0]).join('').toUpperCase();
+    const uniqueId = Math.random().toString(36).substring(2, 7).toUpperCase();
+
+    return `${ACADEMY_NAME.replace(/\s+/g, '-')}-${studentInitials}${fatherInitials}-${uniqueId}`;
+}
+
+function handleRegistration() {
+    const sName = document.getElementById('studentName').value.trim();
+    const fName = document.getElementById('fatherName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const mobile = document.getElementById('mobile').value.trim();
+    const city = document.getElementById('city').value.trim();
+    
+    if (!sName || !fName || !email || !mobile || !city) {
+        showQuizNotification('Registration Error', 'Please fill in all the registration details.', 'error');
+        return;
+    }
+    
+    // Generate access code
+    const generatedCode = generateAccessCode(sName, fName);
+    studentAccessCode = generatedCode;
+
+    studentData = {
+        'Student Name': sName,
+        'Father Name': fName,
+        'Email': email,
+        'Mobile': mobile,
+        'City': city
+    };
+
+    // Send registration data to Google Sheet
+    const registrationDataToSend = {
+        type: 'registration',
+        accessCode: generatedCode,
+        studentName: sName,
+        fatherName: fName,
+        email: email,
+        mobile: mobile,
+        city: city
+    };
+    
+    sendDataToSheet(registrationDataToSend)
+        .then(response => {
+            console.log('Sheet Registration Response:', response);
+            // No success message - just proceed to quiz
+        })
+        .catch(error => {
+            console.error('Sheet Registration Error:', error);
+            showQuizNotification('Registration Warning', 'Registration saved locally, but sheet submission failed.', 'warning');
+        });
+    
+    // Store data locally
+    localStorage.setItem('studentAccessCode', generatedCode);
+    localStorage.setItem('studentData', JSON.stringify(studentData));
+    
+    const registrations = JSON.parse(localStorage.getItem('wcwRegistrations') || '[]');
+    registrations.push({
+        ...studentData,
+        accessCode: generatedCode,
+        timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('wcwRegistrations', JSON.stringify(registrations));
+    
+    // Start the quiz after registration
+    startQuiz('MDCAT-001', 'Student', generatedCode);
+}
+
+// Quiz Access Handler
+function checkDeveloperPassword() {
+    devErrorBox.style.display = 'none';
+    if (devPasswordInput.value === DEV_ACCESS_CODE) {
+        startQuiz('MDCAT-001', 'Developer', DEV_ACCESS_CODE);
+    } else {
+        devErrorBox.style.display = 'block';
+    }
+}
+
+function accessQuiz(inputCode) {
+    const errorBox = document.getElementById('quiz-error-box');
+    errorBox.style.display = 'none';
+    
+    const storedStudentCode = localStorage.getItem('studentAccessCode');
+    
+    if (inputCode === QUIZ_ACCESS_CODE || inputCode === DEV_ACCESS_CODE || inputCode === storedStudentCode) {
+        startQuiz('MDCAT-001', 'Student', inputCode);
+    } else {
+        errorBox.style.display = 'block';
+    }
+}
+
+function startQuiz(quizId, userType, code) {
+    currentQuizId = quizId;
+    quizData = quizData_MDCAT_001;
+    
+    // Always start fresh - no progress restoration
+    currentQuestion = 0;
+    userAnswers = Array(quizData.length).fill(null);
+    
+    timeLeft = quizData.length * TIME_PER_MCQ;
+    questionTimeLeft = TIME_PER_MCQ;
+    
+    localStorage.setItem('lastAccessCode', code);
+
+    showPage('quiz-page');
+    initQuiz();
+}
+
+// Quiz Logic
+function initQuiz() {
+    quizSubjectEl.textContent = QUIZ_SUBJECT;
+    perMcqTimeEl.textContent = Math.floor(TIME_PER_MCQ / 60);
+    
+    websiteLinkEl.href = WEBSITE_LINK;
+    whatsappContactLinkEl.href = 'https://wa.me/' + WHATSAPP_CONTACT;
+    whatsappCommunityLinkEl.href = WHATSAPP_COMMUNITY;
+    
+    quizTitleEl.textContent = `Test - ID: ${currentQuizId}`;
+    
+    // Disable reasoning button initially
+    reasoningBtn.classList.remove('enabled');
+    
+    renderQuestionNav();
+    renderQuestion();
+
+    if (totalTimeInterval) clearInterval(totalTimeInterval);
+    if (questionTimeInterval) clearInterval(questionTimeInterval);
+    
+    totalTimeInterval = setInterval(updateTotalTimer, 1000);
+    questionTimeInterval = setInterval(updateQuestionTimer, 1000);
+}
+
+function updateTotalTimer() {
+    if (timeLeft > 0) {
+        timeLeft--;
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        totalTimerEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    } else {
+        clearInterval(totalTimeInterval);
+        submitTest(true);
+    }
+}
+
+function updateQuestionTimer() {
+    if (questionTimeLeft > 0) {
+        questionTimeLeft--;
+        questionTimerEl.textContent = `${questionTimeLeft}`;
+    } else {
+        questionTimeLeft = TIME_PER_MCQ;
+        navigateQuestion('next');
+    }
+}
+
+function renderQuestionNav() {
+    questionNavEl.innerHTML = '';
+    quizData.forEach((_, index) => {
+        const navItem = document.createElement('div');
+        navItem.classList.add('question-nav-item');
+        navItem.textContent = index + 1;
+        navItem.onclick = () => navigateQuestion(index);
+        
+        if (index === currentQuestion) {
+            navItem.classList.add('current');
+        } else if (userAnswers[index] !== null) {
+            navItem.classList.add('solved');
+        } else if (userAnswers.slice(0, index).some(ans => ans !== null) || index < currentQuestion) {
+             navItem.classList.add('visited');
+        }
+        
+        questionNavEl.appendChild(navItem);
+    });
+    updateProgressBar();
+}
+
+function updateProgressBar() {
+    const solvedCount = userAnswers.filter(answer => answer !== null).length;
+    const progress = (solvedCount / quizData.length) * 100;
+    quizProgressEl.style.width = `${progress}%`;
+}
+
+function renderQuestion() {
+    reasoningEl.style.display = 'none';
+    // Disable reasoning button initially
+    reasoningBtn.classList.remove('enabled');
+    
+    const question = quizData[currentQuestion];
+    questionTextEl.innerHTML = `${currentQuestion + 1}. ${question.question}`;
+    
+    optionsContainerEl.innerHTML = '';
+    question.options.forEach((option, index) => {
+        const optionEl = document.createElement('div');
+        optionEl.classList.add('option');
+        optionEl.innerHTML = option;
+        optionEl.onclick = () => selectOption(index);
+        
+        if (userAnswers[currentQuestion] === index) {
+            optionEl.classList.add('selected');
+        }
+        
+        optionsContainerEl.appendChild(optionEl);
+    });
+    
+    questionTimeLeft = TIME_PER_MCQ;
+    questionTimerEl.textContent = `${questionTimeLeft}`;
+    renderQuestionNav();
+    
+    // Render KaTeX equations in the question and options
+    if (typeof renderMathInElement === 'function') {
+        renderMathInElement(questionTextEl);
+        optionsContainerEl.querySelectorAll('.option').forEach(option => {
+            renderMathInElement(option);
+        });
+    }
+}
+
+function selectOption(optionIndex) {
+    userAnswers[currentQuestion] = optionIndex;
+    
+    // Remove previous selections
+    const options = optionsContainerEl.querySelectorAll('.option');
+    options.forEach(option => {
+        option.classList.remove('selected');
+    });
+    
+    // Add selection to clicked option
+    options[optionIndex].classList.add('selected');
+    
+    // Enable reasoning button
+    reasoningBtn.classList.add('enabled');
+    
+    renderQuestionNav();
+}
+
+function navigateQuestion(direction) {
+    const totalQuestions = quizData.length;
+    let nextIndex;
+
+    if (typeof direction === 'number') {
+        nextIndex = direction;
+    } else if (direction === 'next') {
+        nextIndex = (currentQuestion + 1) % totalQuestions;
+    } else if (direction === 'prev') {
+        nextIndex = (currentQuestion - 1 + totalQuestions) % totalQuestions;
+    } else {
+        return;
+    }
+
+    if (nextIndex === currentQuestion) return;
+    
+    currentQuestion = nextIndex;
+    renderQuestion();
+}
+
+function toggleReasoning() {
+    if (!reasoningBtn.classList.contains('enabled')) return;
+    
+    const question = quizData[currentQuestion];
+    if (reasoningEl.style.display === 'block') {
+        reasoningEl.style.display = 'none';
+    } else {
+        reasoningTextEl.textContent = question.reasoning;
+        reasoningEl.style.display = 'block';
+        
+        // Render KaTeX in reasoning if present
+        if (typeof renderMathInElement === 'function') {
+            renderMathInElement(reasoningTextEl);
+        }
+    }
+}
+
+function submitTest(isTimeout = false) {
+    if (!isTimeout && !confirm('Are you sure you want to submit the quiz?')) {
+        return;
+    }
+    
+    clearInterval(totalTimeInterval);
+    clearInterval(questionTimeInterval);
+
+    let correct = 0;
+    let incorrect = 0;
+    let unanswered = 0;
+
+    quizData.forEach((question, index) => {
+        if (userAnswers[index] === null) {
+            unanswered++;
+        } else if (userAnswers[index] === question.correctAnswer) {
+            correct++;
+        } else {
+            incorrect++;
+        }
+    });
+
+    const totalQuestions = quizData.length;
+    const totalScore = (correct * MARK_PER_MCQ) - (incorrect * NEGATIVE_MARKING);
+    const totalMarks = totalQuestions * MARK_PER_MCQ;
+
+    const savedStudentData = JSON.parse(localStorage.getItem('studentData') || '{}');
+    const lastAccessCode = localStorage.getItem('lastAccessCode') || 'N/A';
+    
+    // Populate student info table (without access code)
+    let studentInfoHtml = '';
+    for (const [key, value] of Object.entries(savedStudentData)) {
+        if (key !== 'accessCode') {
+            studentInfoHtml += `<tr><td>${key}</td><td>${value}</td></tr>`;
+        }
+    }
+    if (studentInfoTable) {
+        studentInfoTable.innerHTML = studentInfoHtml;
+    }
+
+    // Show submission message
+    if (submissionMessageEl) {
+        submissionMessageEl.style.display = 'block';
+    }
+
+    // Send quiz results to Google Sheet
+    if (lastAccessCode && lastAccessCode !== 'N/A') {
+        const resultsDataToSend = {
+            type: 'quiz_result',
+            accessCode: lastAccessCode,
+            quizId: currentQuizId,
+            totalQuestions: totalQuestions,
+            correct: correct,
+            incorrect: incorrect,
+            unanswered: unanswered,
+            totalScore: totalScore,
+            totalMarks: totalMarks,
+            studentName: savedStudentData['Student Name'] || 'Unknown',
+            studentEmail: savedStudentData['Email'] || '',
+            studentMobile: savedStudentData['Mobile'] || '',
+            submissionDate: new Date().toISOString()
+        };
+
+        sendDataToSheet(resultsDataToSend)
+            .then(response => {
+                console.log('Sheet Results Update Response:', response);
+            })
+            .catch(error => {
+                console.error('Sheet Results Update Error:', error);
+            });
+    }
+
+    const results = JSON.parse(localStorage.getItem('wcwQuizResults') || '[]');
+    results.push({
+        studentName: savedStudentData['Student Name'] || 'Unknown',
+        accessCode: lastAccessCode,
+        quizId: currentQuizId,
+        totalQuestions: totalQuestions,
+        correct: correct,
+        incorrect: incorrect,
+        unanswered: unanswered,
+        totalScore: totalScore,
+        totalMarks: totalMarks,
+        timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('wcwQuizResults', JSON.stringify(results));
+    
+    showPage('results-page');
+}
+
+function restartTest() {
+    if (!ENABLE_RETAKE_FULL) {
+        showQuizNotification('Retake Disabled', 'Retake full test feature is disabled for this quiz.', 'warning');
+        return;
+    }
+    
+    if (confirm('Your new results will be submitted to the server. Are you sure you want to retake the full test?')) {
+        quizData = quizData_MDCAT_001;
+        currentQuestion = 0;
+        userAnswers = Array(quizData.length).fill(null);
+        timeLeft = quizData.length * TIME_PER_MCQ;
+        
+        showPage('quiz-page');
+        initQuiz();
+    }
+}
+
+function retakeIncorrect() {
+    if (!ENABLE_RETAKE_INCORRECT) {
+        showQuizNotification('Retake Disabled', 'Retake incorrect questions feature is disabled for this quiz.', 'warning');
+        return;
+    }
+    
+    const incorrectIndices = quizData.map((question, index) => {
+        const isIncorrect = userAnswers[index] !== null && 
+                            userAnswers[index] !== question.correctAnswer;
+        return isIncorrect ? index : -1;
+    }).filter(index => index !== -1);
+    
+    if (incorrectIndices.length === 0) {
+        showQuizNotification('No Incorrect Questions', 'You have no incorrect questions to retake!', 'info');
+        return;
+    }
+    
+    const incorrectQuestions = incorrectIndices.map(index => quizData_MDCAT_001[index]);
+    quizData = incorrectQuestions;
+    currentQuestion = 0;
+    userAnswers = Array(quizData.length).fill(null);
+    timeLeft = quizData.length * TIME_PER_MCQ;
+    
+    // Note: Results will NOT be sent for retake incorrect
+    
+    showPage('quiz-page');
+    initQuiz();
+}
+
+function viewAllMcqs() {
+    allMcqsList.innerHTML = '';
+    quizData_MDCAT_001.forEach((question, index) => {
+        const mcqItem = document.createElement('div');
+        mcqItem.classList.add('all-mcq-item');
+        mcqItem.innerHTML = `
+            <div class="question-text">${index + 1}. ${question.question}</div>
+            <div class="all-mcq-options">
+                ${question.options.map((option, optIndex) => `
+                    <div class="all-mcq-option ${optIndex === question.correctAnswer ? 'correct' : ''}">
+                        ${option}
+                    </div>
+                `).join('')}
+            </div>
+            <div class="all-mcq-reasoning">
+                <strong>Reasoning:</strong> ${question.reasoning}
+            </div>
+        `;
+        allMcqsList.appendChild(mcqItem);
+    });
+    showPage('all-mcqs-page');
+    
+    // Render KaTeX equations in all MCQs
+    if (typeof renderMathInElement === 'function') {
+        setTimeout(() => {
+            allMcqsList.querySelectorAll('.question-text, .all-mcq-option, .all-mcq-reasoning').forEach(el => {
+                renderMathInElement(el);
+            });
+        }, 100);
+    }
+}
+</script>
+</body>
+</html>
